@@ -1,0 +1,20 @@
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+  overflow: hidden;
+}
+
+.header {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #1d1a1a;
+}
+
+.main {
+  margin-top: 90px;
+}

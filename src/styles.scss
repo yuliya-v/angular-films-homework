@@ -15,6 +15,7 @@ body {
   color: #FFF;
   font-size: 16px;
   font-family: 'Noto Sans Display', sans-serif;
+  overscroll-behavior: none;
 }
 
 a {
@@ -28,11 +29,4 @@ ul, li, ol {
 h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
   font-weight: inherit;
-}
-
-.wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 10px;
-  overflow: hidden;
 }

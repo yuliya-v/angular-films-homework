@@ -1,5 +1,9 @@
-<div class="wrapper">
-  <div class="container">
-    <app-sorting></app-sorting>
-  </div>
+<div class="sorting">
+  <app-sorting></app-sorting>
 </div>
+<mat-grid-list *ngIf="moviesService.movies" cols="5" rowHeight="360px" class="grid">
+  <mat-grid-tile *ngFor="let movie of moviesService.movies">
+    <app-movie [data]="movie"></app-movie>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-paginator></app-paginator>
