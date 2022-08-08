@@ -11,7 +11,15 @@
   {{ releaseDate }}
 </p>
 <p>
+  <span>Budget:</span>
+  {{ budget }}
+</p>
+<p>
+  <span>Revenue:</span>
+  {{ revenue }}
+</p>
+<p>
   <span>Duration:</span>
   {{ duration }}
 </p>
-<app-genres-list [genreIds]="genreIds"></app-genres-list>
+<app-genres-list [genres]="genres"></app-genres-list>

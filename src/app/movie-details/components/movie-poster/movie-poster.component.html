@@ -1,4 +1,4 @@
 <div class="container">
-  <img src="" alt="poster" class="image" />
-  <span class="rating"></span>
+  <img [src]="src" alt="poster" class="image" />
+  <span class="rating">{{ rating | number: '1.1-1' }}</span>
 </div>
