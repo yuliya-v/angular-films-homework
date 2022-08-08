@@ -1,10 +1,24 @@
 <header class="header">
   <div class="wrapper">
     <app-header></app-header>
+    <nav>
+      <button mat-button color="primary" (click)="currentPage = 'main'">Main</button>
+      <button mat-button color="primary" (click)="currentPage = 'movieDetails'">
+        Movie Details
+      </button>
+      <button mat-button color="primary" (click)="currentPage = 'actorDetails'">
+        Actor Details
+      </button>
+    </nav>
   </div>
 </header>
 <main class="main">
-  <div class="wrapper">
-    <app-main-page></app-main-page>
+  <div class="wrapper" [ngSwitch]="currentPage">
+    <ng-template [ngSwitchCase]="'main'">
+      <app-main-page></app-main-page>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'movieDetails'">
+      <app-movie-details-page></app-movie-details-page>
+    </ng-template>
   </div>
 </main>

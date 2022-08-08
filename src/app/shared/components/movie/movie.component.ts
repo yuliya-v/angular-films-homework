@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/core/models/movie.model';
+import { GenreService } from 'src/app/core/services/genre.service';
 
 @Component({
   selector: 'app-movie',
@@ -11,17 +12,17 @@ export class MovieComponent implements OnInit {
   title = '';
   img = '';
   rating = 0;
-  genres: number[] = [];
+  genres: string[] = [];
   baseLink = 'https://image.tmdb.org/t/p/w185//';
 
-  constructor() {}
+  constructor(private genreService: GenreService) {}
 
   ngOnInit(): void {
     if (this.data) {
       this.title = this.data.title;
       this.img = this.baseLink + this.data.poster_path;
       this.rating = this.data.vote_average;
-      this.genres = this.data.genre_ids;
+      this.genres = this.data.genre_ids.map(el => this.genreService.getGenre(el));
     }
   }
 }

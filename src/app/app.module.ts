@@ -6,10 +6,18 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainModule } from './main/main.module';
 import { MovieDetailsModule } from './movie-details/movie-details.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, CoreModule, BrowserAnimationsModule, MainModule, MovieDetailsModule],
+  imports: [
+    BrowserModule,
+    CoreModule,
+    BrowserAnimationsModule,
+    MainModule,
+    MatButtonModule,
+    MovieDetailsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
