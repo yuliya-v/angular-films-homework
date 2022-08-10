@@ -1,0 +1,29 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.btn {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  font-size: 12px;
+  border: 1px solid #fff;
+
+  &.active {
+    background-color: #fff;
+    color: black;
+  }
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 115px);
+  justify-content: space-between;
+  grid-gap: 10px;
+}

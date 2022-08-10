@@ -5,6 +5,10 @@ import { MoviePosterComponent } from './components/movie-poster/movie-poster.com
 import { MovieInfoComponent } from './components/movie-info/movie-info.component';
 import { GenresListComponent } from './components/genres-list/genres-list.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { CastComponent } from './components/cast/cast.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CastMemberComponent } from './components/cast-member/cast-member.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -12,8 +16,10 @@ import { MatChipsModule } from '@angular/material/chips';
     MoviePosterComponent,
     MovieInfoComponent,
     GenresListComponent,
+    CastComponent,
+    CastMemberComponent,
   ],
-  imports: [CommonModule, MatChipsModule],
+  imports: [CommonModule, MatChipsModule, MatButtonModule, MatGridListModule],
   exports: [MovieDetailsPageComponent],
 })
 export class MovieDetailsModule {}
