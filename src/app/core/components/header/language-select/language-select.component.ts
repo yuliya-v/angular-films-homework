@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-language-select',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./language-select.component.scss'],
 })
 export class LanguageSelectComponent {
+  currentLang = new FormControl('EN');
+  form = new FormGroup({
+    lang: this.currentLang,
+  });
   constructor() {}
 }

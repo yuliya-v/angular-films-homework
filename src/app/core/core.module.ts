@@ -10,6 +10,7 @@ import { LanguageSelectComponent } from './components/header/language-select/lan
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { LogoComponent } from './components/header/logo/logo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderComponent, SearchComponent, LanguageSelectComponent, LogoComponent],
@@ -21,6 +22,8 @@ import { LogoComponent } from './components/header/logo/logo.component';
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [HeaderComponent, SearchComponent],
 })

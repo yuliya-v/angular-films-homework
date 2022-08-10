@@ -1,7 +1,9 @@
-<mat-form-field appearance="outline" color="accent">
-  <mat-label>Language</mat-label>
-  <mat-select>
-    <mat-option>en</mat-option>
-    <mat-option>ru</mat-option>
-  </mat-select>
-</mat-form-field>
+<form [formGroup]="form">
+  <mat-form-field appearance="outline" color="accent" id="lang">
+    <mat-label class="label"></mat-label>
+    <mat-select [formControl]="currentLang">
+      <mat-option [value]="'EN'">en</mat-option>
+      <mat-option [value]="'RU'">ru</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
