@@ -9,6 +9,8 @@ import { CastComponent } from './components/cast/cast.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CastMemberComponent } from './components/cast-member/cast-member.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ImagesComponent } from './components/images/images.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     GenresListComponent,
     CastComponent,
     CastMemberComponent,
+    ImagesComponent,
+    ImageComponent,
   ],
   imports: [CommonModule, MatChipsModule, MatButtonModule, MatGridListModule],
   exports: [MovieDetailsPageComponent],
