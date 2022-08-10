@@ -11,6 +11,8 @@ import { CastMemberComponent } from './components/cast-member/cast-member.compon
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ImagesComponent } from './components/images/images.component';
 import { ImageComponent } from './components/image/image.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { ImageComponent } from './components/image/image.component';
     CastMemberComponent,
     ImagesComponent,
     ImageComponent,
+    RecommendationsComponent,
   ],
-  imports: [CommonModule, MatChipsModule, MatButtonModule, MatGridListModule],
+  imports: [CommonModule, SharedModule, MatChipsModule, MatButtonModule, MatGridListModule],
   exports: [MovieDetailsPageComponent],
 })
 export class MovieDetailsModule {}

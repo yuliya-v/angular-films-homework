@@ -1,6 +1,10 @@
 :host {
   margin: 20px auto;
+}
+
+.top {
   display: flex;
+  margin-top: 25px;
 }
 
 .info {
@@ -8,10 +12,13 @@
 }
 
 app-cast {
-  display: block;
   margin-top: 30px;
 }
 
 app-images {
   margin-top: 30px;
+}
+
+app-recommendations {
+  margin: 55px 0 35px;
 }

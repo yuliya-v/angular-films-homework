@@ -7,12 +7,8 @@ import { imagesData } from 'src/app/data/images';
   templateUrl: './images.component.html',
   styleUrls: ['./images.component.scss'],
 })
-export class ImagesComponent implements OnInit {
+export class ImagesComponent {
   @Input() data: Image[] = [];
 
   constructor() {}
-
-  ngOnInit(): void {
-    this.data = imagesData;
-  }
 }

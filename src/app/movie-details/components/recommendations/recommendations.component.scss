@@ -1,12 +1,17 @@
-.sorting {
-  display: flex;
-  margin-left: auto;
+:host {
+  display: block;
 }
 
 .grid {
   display: grid;
-  margin: 25px auto;
   grid-template-columns: repeat(5, auto);
   justify-content: space-between;
   grid-gap: 20px;
+}
+
+h3 {
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 40px;
 }

@@ -1,9 +1,11 @@
-<div class="poster">
-  <app-movie-poster [data]="movie"></app-movie-poster>
+<div class="top">
+  <div class="poster">
+    <app-movie-poster [data]="movie"></app-movie-poster>
+  </div>
+  <div class="info">
+    <app-movie-info [data]="movie"></app-movie-info>
+    <app-cast [data]="actors"></app-cast>
+    <app-images [data]="images"></app-images>
+  </div>
 </div>
-<div class="info">
-  <app-movie-info [data]="movie"></app-movie-info>
-  <app-cast [data]="actors"></app-cast>
-  <app-images></app-images>
-</div>
-<div class="recommends"></div>
+<app-recommendations [data]="recommendations"></app-recommendations>
