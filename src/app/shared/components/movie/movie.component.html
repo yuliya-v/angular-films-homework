@@ -1,8 +1,9 @@
 <div class="container">
   <div class="img-wrapper">
-    <img [src]="img" alt="poster" class="image" />
+    <mat-icon>camera_roll</mat-icon>
+    <img *ngIf="img" [src]="img" alt="poster" class="image" />
+    <span class="rating">{{ rating }}</span>
   </div>
-  <span class="rating">{{ rating }}</span>
   <h3 class="title">{{ title }}</h3>
   <ul class="genres">
     <li *ngFor="let genre of genres" class="genre">{{ genre }}</li>
