@@ -1,7 +1,5 @@
 <div class="sorting">
   <app-sorting></app-sorting>
 </div>
-<div class="grid">
-  <app-movie *ngFor="let movie of moviesService.movies" [data]="movie"></app-movie>
-</div>
+<app-movie-grid [data]="moviesService.movies"></app-movie-grid>
 <app-paginator></app-paginator>

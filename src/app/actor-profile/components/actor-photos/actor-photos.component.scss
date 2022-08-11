@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  justify-content: space-between;
+  grid-gap: 30px;
+}
+
+.image {
+  display: block;
+  width: 120px;
+  height: 168px;
+  border-radius: 5px;
+  object-fit: cover;
+}

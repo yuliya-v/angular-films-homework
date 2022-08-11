@@ -8,7 +8,6 @@ import { CastComponent } from './components/cast/cast.component';
 import { CastMemberComponent } from './components/cast-member/cast-member.component';
 import { ImagesComponent } from './components/images/images.component';
 import { ImageComponent } from './components/image/image.component';
-import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { SharedModule } from '../shared/shared.module';
     CastMemberComponent,
     ImagesComponent,
     ImageComponent,
-    RecommendationsComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [MovieDetailsPageComponent],

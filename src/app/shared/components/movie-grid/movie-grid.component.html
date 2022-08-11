@@ -1,4 +1,4 @@
-<h3>Recommendations</h3>
+<h3 *ngIf="title">{{ title }}</h3>
 <div class="grid">
   <app-movie *ngFor="let movie of data" [data]="movie"></app-movie>
 </div>
