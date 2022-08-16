@@ -2,6 +2,8 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MovieDetails } from 'src/app/core/models/movie-details.model';
 
+const MINUTES_IN_HOUR = 60;
+
 @Component({
   selector: 'app-movie-info',
   templateUrl: './movie-info.component.html',
@@ -10,13 +12,13 @@ import { MovieDetails } from 'src/app/core/models/movie-details.model';
 })
 export class MovieInfoComponent implements OnInit {
   @Input() data?: MovieDetails;
-  title = '';
-  overview = '';
-  releaseDate = '';
-  duration = '';
-  budget = '';
-  revenue = '';
-  genres: string[] = [];
+  public title: string = '';
+  public overview: string = '';
+  public releaseDate: string = '';
+  public duration: string = '';
+  public budget: string = '';
+  public revenue: string = '';
+  public genres: string[] = [];
 
   constructor(private currencyPipe: CurrencyPipe) {}
 
@@ -25,7 +27,6 @@ export class MovieInfoComponent implements OnInit {
       this.title = this.data.title;
       this.overview = this.data.overview;
       this.releaseDate = this.data.release_date;
-      this.duration = `${this.data.runtime / 60}`;
       this.genres = this.data.genres.map(el => el.name);
       [this.budget, this.revenue] = [this.data.budget, this.data.revenue].map(
         this.transformCurrency.bind(this)
@@ -44,8 +45,8 @@ export class MovieInfoComponent implements OnInit {
   }
 
   private transformDuration(duration: number): string {
-    const hours = Math.floor(duration / 60);
-    const minutes = duration - hours * 60;
+    const hours = Math.floor(duration / MINUTES_IN_HOUR);
+    const minutes = duration - hours * MINUTES_IN_HOUR;
     return `${hours}:${minutes}`;
   }
 }

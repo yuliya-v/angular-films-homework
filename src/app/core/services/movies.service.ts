@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, take, tap } from 'rxjs';
-import { moviesData } from 'src/app/data/movies';
 import { Movie } from '../models/movie.model';
+import { MOVIES_DATA } from 'src/app/data/movies.mock';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  movies?: Movie[];
+  public movies?: Movie[];
 
   getAll(): void {
-    this.movies = moviesData;
+    this.movies = MOVIES_DATA;
   }
 }

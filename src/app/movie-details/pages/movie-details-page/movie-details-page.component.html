@@ -1,6 +1,13 @@
 <div class="top">
   <div class="poster">
-    <app-movie-poster [data]="movie"></app-movie-poster>
+    <div class="img-wrapper">
+      <app-image
+        [imagePath]="posterPath"
+        [alt]="'poster'"
+        [icon]="'camera_roll'"
+        [size]="'large'"></app-image>
+      <app-rating [rating]="rating" [size]="'large'"></app-rating>
+    </div>
   </div>
   <div class="info">
     <app-movie-info [data]="movie"></app-movie-info>

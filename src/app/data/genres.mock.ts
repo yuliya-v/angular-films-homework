@@ -1,6 +1,4 @@
-import { Genre } from '../core/models/genre.model';
-
-export const genresData: Genre[] = [
+export const GENRES_DATA = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
   { id: 16, name: 'Animation' },

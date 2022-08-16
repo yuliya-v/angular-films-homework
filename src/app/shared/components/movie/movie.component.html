@@ -1,11 +1,10 @@
 <div class="container">
   <div class="img-wrapper">
-    <mat-icon>camera_roll</mat-icon>
-    <img *ngIf="img" [src]="img" alt="poster" class="image" />
-    <span class="rating">{{ rating }}</span>
+    <app-image [imagePath]="imagePath" [alt]="'poster'" [icon]="'camera_roll'"></app-image>
+    <app-rating [rating]="rating"></app-rating>
   </div>
   <h3 class="title">{{ title }}</h3>
   <ul class="genres">
-    <li *ngFor="let genre of genres" class="genre">{{ genre }}</li>
+    <li class="genre" *ngFor="let genre of genres">{{ genre }}</li>
   </ul>
 </div>

@@ -9,6 +9,4 @@ import { Movie } from 'src/app/core/models/movie.model';
 export class MovieGridComponent {
   @Input() data?: Movie[];
   @Input() title?: string;
-
-  constructor() {}
 }

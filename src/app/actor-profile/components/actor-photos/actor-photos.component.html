@@ -1,4 +1,8 @@
 <h3>Photos</h3>
 <div class="grid">
-  <img *ngFor="let photo of data" [src]="baseLink + photo.file_path" alt="photo" class="image" />
+  <app-image
+    *ngFor="let photo of data"
+    [imagePath]="photo.file_path"
+    [alt]="'photo'"
+    [icon]="'person'"></app-image>
 </div>

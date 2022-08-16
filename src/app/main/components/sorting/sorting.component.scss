@@ -3,10 +3,10 @@
   margin: 0;
   height: 32px;
   font-size: 12px;
-  border-color: #fff;
+  border-color:  var(--color-light);
   background-color: transparent;
 }
 
-::ng-deep .mat-button-toggle-label-content {
-  line-height: 32px !important;
+::ng-deep .movie-sorting .mat-button-toggle-label-content {
+  line-height: 32px;
 }

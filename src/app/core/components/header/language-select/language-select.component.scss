@@ -6,24 +6,16 @@ mat-option {
   text-transform: uppercase;
 }
 
-::ng-deep #lang .mat-form-field-wrapper {
-  width: 50px !important;
+::ng-deep .lang-select .mat-form-field-wrapper {
+  width: 50px;
 }
 
-::ng-deep #lang .mat-form-field-flex {
-  padding-left: 15px !important;
-  text-transform: uppercase !important;
+::ng-deep .lang-select .mat-form-field-infix {
+  padding: 2px 0 7px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-::ng-deep .mat-select-panel {
-  transform: translateX(-30px) !important;
-}
-
-::ng-deep #lang .mat-form-field-infix {
-  padding: 2px 0 7px !important;
-}
-
-
-::ng-deep #lang .mat-select-arrow-wrapper {
-  display: none !important;
+::ng-deep .lang-select .mat-select-arrow-wrapper {
+  display: none;
 }

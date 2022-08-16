@@ -1,6 +1,4 @@
-import { Movie } from '../core/models/movie.model';
-
-export const moviesData: Movie[] = [
+export const MOVIES_DATA = [
   {
     adult: false,
     backdrop_path: '/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg',

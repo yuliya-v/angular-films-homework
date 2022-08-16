@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Image } from 'src/app/core/models/image.model';
-import { imagesData } from 'src/app/data/images';
 
 @Component({
   selector: 'app-images',
@@ -9,6 +8,4 @@ import { imagesData } from 'src/app/data/images';
 })
 export class ImagesComponent {
   @Input() data: Image[] = [];
-
-  constructor() {}
 }

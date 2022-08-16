@@ -7,12 +7,22 @@
   padding: 0;
 }
 
+:root {
+  --color-light: #fff;
+  --color-accent: #3bb33b;
+  --color-bcg: #141414;
+  --color-header-bcg: #1d1a1a;
+  --color-image-bcg: #1f1d1d;
+  --color-movie-hover: rgba(25, 24, 23, 0.5);
+  --color-text: #aaa;
+}
+
 body {
   min-height: 100vh;
   min-width: 1200px;
   box-sizing: border-box;
-  background-color: #141414;
-  color: #fff;
+  background-color: var(--color-bcg);
+  color:  var(--color-light);
   font-size: 16px;
   font-family: 'Noto Sans Display', sans-serif;
   overscroll-behavior: none;
@@ -37,3 +47,5 @@ h6 {
   font-size: inherit;
   font-weight: inherit;
 }
+
+

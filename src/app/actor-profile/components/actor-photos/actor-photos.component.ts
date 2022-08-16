@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActorPhoto } from 'src/app/core/models/actor-photo';
+import { ImageService } from 'src/app/core/services/image.service';
 
 @Component({
   selector: 'app-actor-photos',
@@ -8,6 +9,10 @@ import { ActorPhoto } from 'src/app/core/models/actor-photo';
 })
 export class ActorPhotosComponent {
   @Input() data: ActorPhoto[] = [];
-  baseLink = 'https://image.tmdb.org/t/p/w300//';
-  constructor() {}
+
+  constructor(private imageService: ImageService) {}
+
+  public getSrc(path: string): string {
+    return this.imageService.getImage(path, 'small');
+  }
 }

@@ -11,5 +11,4 @@ export class SearchComponent {
   form = new FormGroup({
     searchValue: this.searchValue,
   });
-  constructor() {}
 }

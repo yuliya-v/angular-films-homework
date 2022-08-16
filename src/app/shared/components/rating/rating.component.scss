@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+div {
+  border-radius: 2px;
+  color:  var(--color-light);
+  width: 32px;
+  height: 18px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 18px;
+  background-color:  var(--color-accent);
+
+  &.large {
+    width: 50px;
+    height: 28px;
+    font-size: 14px;
+    line-height: 28px;
+  }
+}

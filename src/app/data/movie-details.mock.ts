@@ -1,4 +1,4 @@
-export const movieDetails = {
+export const MOVIE_DETAILS = {
   adult: false,
   backdrop_path: '/5hNcsnMkwU2LknLoru73c76el3z.jpg',
   belongs_to_collection: null,

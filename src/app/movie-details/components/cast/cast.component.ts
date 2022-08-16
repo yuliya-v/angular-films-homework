@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Actor } from 'src/app/core/models/actor.model';
+
+const INIT_ACTORS_NUMBER = 6;
 
 @Component({
   selector: 'app-cast',
@@ -9,22 +10,19 @@ import { Actor } from 'src/app/core/models/actor.model';
 })
 export class CastComponent implements OnInit {
   @Input() data: Actor[] = [];
-  currentData: Actor[] = [];
-  initActorsNumber = 6;
-
-  constructor() {}
+  public currentData: Actor[] = [];
 
   ngOnInit() {
     if (this.data) {
-      this.currentData = this.data.slice(0, this.initActorsNumber);
+      this.currentData = this.data.slice(0, INIT_ACTORS_NUMBER);
     }
   }
 
-  toggleActors() {
-    if (this.currentData.length === this.initActorsNumber) {
+  public toggleActors(): void {
+    if (this.currentData.length === INIT_ACTORS_NUMBER) {
       this.currentData = this.data;
     } else {
-      this.currentData = this.data.slice(0, this.initActorsNumber);
+      this.currentData = this.data.slice(0, INIT_ACTORS_NUMBER);
     }
   }
 }

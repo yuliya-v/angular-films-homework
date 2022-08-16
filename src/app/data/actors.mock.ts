@@ -1,6 +1,4 @@
-import { Actor } from '../core/models/actor.model';
-
-export const actorsData: Actor[] = [
+export const ACTORS_DATA = [
   {
     adult: false,
     gender: 2,

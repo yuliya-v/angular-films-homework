@@ -7,9 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./language-select.component.scss'],
 })
 export class LanguageSelectComponent {
-  currentLang = new FormControl('EN');
-  form = new FormGroup({
+  public currentLang = new FormControl('en');
+  public form = new FormGroup({
     lang: this.currentLang,
   });
-  constructor() {}
 }

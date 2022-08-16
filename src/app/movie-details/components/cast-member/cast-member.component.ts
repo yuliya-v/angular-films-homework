@@ -8,16 +8,13 @@ import { Actor } from 'src/app/core/models/actor.model';
 })
 export class CastMemberComponent implements OnInit {
   @Input() data?: Actor;
-  baseLink = 'https://image.tmdb.org/t/p/w185/';
-  image = '';
-  name = '';
-  character = '';
-
-  constructor() {}
+  public name: string = '';
+  public character: string = '';
+  public imagePath: string = '';
 
   ngOnInit(): void {
     if (this.data) {
-      this.image = this.baseLink + this.data.profile_path;
+      this.imagePath = this.data.profile_path || '';
       this.name = this.data.name;
       this.character = this.data.character;
     }

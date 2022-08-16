@@ -1,4 +1,4 @@
-export const actorPhotos = [
+export const ACTOR_PHOTOS = [
   {
     aspect_ratio: 0.667,
     height: 1680,

@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './sorting.component.html',
   styleUrls: ['./sorting.component.scss'],
 })
-export class SortingComponent {
-  constructor() {}
-}
+export class SortingComponent {}

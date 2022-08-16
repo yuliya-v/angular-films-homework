@@ -1,4 +1,4 @@
-export const imagesData = [
+export const IMAGES_DATA = [
   {
     aspect_ratio: 1.778,
     height: 2160,

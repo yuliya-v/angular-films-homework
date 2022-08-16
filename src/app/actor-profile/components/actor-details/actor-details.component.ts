@@ -8,17 +8,15 @@ import { ActorDetails } from 'src/app/core/models/actor-details';
 })
 export class ActorDetailsComponent implements OnInit {
   @Input() data?: ActorDetails;
-  name = '';
-  birth = '';
-  birthPlace = '';
-  biography = '';
-
-  constructor() {}
+  public name: string = '';
+  public birthDay: string = '';
+  public birthPlace: string = '';
+  public biography: string = '';
 
   ngOnInit(): void {
     if (this.data) {
       this.name = this.data.name;
-      this.birth = this.data.birthday;
+      this.birthDay = this.data.birthday;
       this.birthPlace = this.data.place_of_birth;
       this.biography = this.data.biography;
     }

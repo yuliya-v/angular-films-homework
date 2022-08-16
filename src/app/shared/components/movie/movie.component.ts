@@ -9,11 +9,11 @@ import { GenreService } from 'src/app/core/services/genre.service';
 })
 export class MovieComponent implements OnInit {
   @Input() data?: Movie;
-  title = '';
-  img = '';
-  rating = 0;
-  genres: string[] = [];
-  baseLink = 'https://image.tmdb.org/t/p/w185//';
+  public title: string = '';
+  public src: string = '';
+  public rating: number = 0;
+  public imagePath: string = '';
+  public genres: string[] = [];
 
   constructor(private genreService: GenreService) {}
 
@@ -22,9 +22,7 @@ export class MovieComponent implements OnInit {
       this.title = this.data.title;
       this.rating = this.data.vote_average;
       this.genres = this.data.genre_ids.map(el => this.genreService.getGenre(el));
-      const image = new Image();
-      image.src = this.baseLink + this.data.poster_path;
-      image.onload = () => (this.img = image.src);
+      this.imagePath = this.data.poster_path;
     }
   }
 }

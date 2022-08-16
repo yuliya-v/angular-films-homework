@@ -1,6 +1,10 @@
 <div class="top">
   <div class="poster">
-    <app-actor-profile-photo [data]="actor"></app-actor-profile-photo>
+    <app-image
+      [imagePath]="actor.profile_path"
+      [alt]="'actor photo'"
+      [icon]="'person'"
+      [size]="'large'"></app-image>
   </div>
   <div class="info">
     <app-actor-details [data]="actor"></app-actor-details>

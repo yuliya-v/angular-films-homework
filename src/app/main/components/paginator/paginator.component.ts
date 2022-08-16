@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent {
-  constructor() {}
-}
+export class PaginatorComponent {}
