@@ -1,6 +1,6 @@
 export interface Actor {
   id: number;
   name: string;
-  profile_path: string | null;
+  profilePath: string | null;
   character: string;
 }

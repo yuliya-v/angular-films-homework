@@ -1,6 +1,5 @@
 export interface ActorPhoto {
-  aspect_ratio: number;
   height: number;
-  file_path: string;
+  filePath: string;
   width: number;
 }

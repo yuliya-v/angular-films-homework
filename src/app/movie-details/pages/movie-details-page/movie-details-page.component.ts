@@ -25,7 +25,7 @@ export class MovieDetailsPageComponent implements OnInit {
     this.actors = ACTORS_DATA;
     this.recommendations = MOVIES_DATA.reverse();
     this.images = IMAGES_DATA;
-    this.posterPath = this.movie.poster_path;
-    this.rating = this.movie.vote_average;
+    this.posterPath = this.movie.posterPath;
+    this.rating = this.movie.voteAverage;
   }
 }

@@ -14,7 +14,7 @@ export class CastMemberComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      this.imagePath = this.data.profile_path || '';
+      this.imagePath = this.data.profilePath || '';
       this.name = this.data.name;
       this.character = this.data.character;
     }

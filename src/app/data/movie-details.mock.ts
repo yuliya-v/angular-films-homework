@@ -16,7 +16,7 @@ export const MOVIE_DETAILS = {
   overview:
     'Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.',
   popularity: 33.118,
-  poster_path: '/2CAL2433ZeIihfX1Hb2139CX0pW.jpg',
+  posterPath: '/2CAL2433ZeIihfX1Hb2139CX0pW.jpg',
   production_companies: [
     {
       id: 1569,
@@ -26,7 +26,7 @@ export const MOVIE_DETAILS = {
     },
   ],
   production_countries: [{ iso_3166_1: 'IN', name: 'India' }],
-  release_date: '1995-10-19',
+  releaseDate: '1995-10-19',
   revenue: 100000000,
   runtime: 190,
   spoken_languages: [{ english_name: 'Hindi', iso_639_1: 'hi', name: 'हिन्दी' }],
@@ -34,6 +34,6 @@ export const MOVIE_DETAILS = {
   tagline: 'Come Fall In love, All Over Again..',
   title: 'Dilwale Dulhania Le Jayenge',
   video: false,
-  vote_average: 8.722,
+  voteAverage: 8.722,
   vote_count: 3754,
 };

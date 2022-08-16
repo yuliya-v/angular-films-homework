@@ -17,7 +17,7 @@ export class ActorDetailsComponent implements OnInit {
     if (this.data) {
       this.name = this.data.name;
       this.birthDay = this.data.birthday;
-      this.birthPlace = this.data.place_of_birth;
+      this.birthPlace = this.data.placeOfBirth;
       this.biography = this.data.biography;
     }
   }

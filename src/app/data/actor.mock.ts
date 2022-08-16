@@ -6,6 +6,6 @@ export const ACTOR_DATA = {
   imdb_id: 'nm0000156',
   known_for_department: 'Acting',
   name: 'Jeff Goldblum',
-  place_of_birth: 'Pittsburgh, Pennsylvania, USA',
-  profile_path: '/ceSmXnD0FUSTaq2WIrnZu9caL0t.jpg',
+  placeOfBirth: 'Pittsburgh, Pennsylvania, USA',
+  profilePath: '/ceSmXnD0FUSTaq2WIrnZu9caL0t.jpg',
 };

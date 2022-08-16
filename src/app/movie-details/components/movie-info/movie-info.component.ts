@@ -26,7 +26,7 @@ export class MovieInfoComponent implements OnInit {
     if (this.data) {
       this.title = this.data.title;
       this.overview = this.data.overview;
-      this.releaseDate = this.data.release_date;
+      this.releaseDate = this.data.releaseDate;
       this.genres = this.data.genres.map(el => el.name);
       [this.budget, this.revenue] = [this.data.budget, this.data.revenue].map(
         this.transformCurrency.bind(this)

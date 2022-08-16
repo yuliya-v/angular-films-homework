@@ -3,6 +3,6 @@ export interface ActorDetails {
   birthday: string;
   id: number;
   name: string;
-  place_of_birth: string;
-  profile_path: string;
+  placeOfBirth: string;
+  profilePath: string;
 }

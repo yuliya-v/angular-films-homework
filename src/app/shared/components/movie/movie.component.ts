@@ -20,9 +20,9 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
     if (this.data) {
       this.title = this.data.title;
-      this.rating = this.data.vote_average;
-      this.genres = this.data.genre_ids.map(el => this.genreService.getGenre(el));
-      this.imagePath = this.data.poster_path;
+      this.rating = this.data.voteAverage;
+      this.genres = this.data.genreIds.map(el => this.genreService.getGenre(el));
+      this.imagePath = this.data.posterPath;
     }
   }
 }
