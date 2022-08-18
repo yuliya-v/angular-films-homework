@@ -7,8 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
-  searchValue = new FormControl('');
-  form = new FormGroup({
+  public searchValue = new FormControl('');
+  public form = new FormGroup({
     searchValue: this.searchValue,
   });
 }

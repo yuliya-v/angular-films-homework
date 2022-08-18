@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ImageService } from 'src/app/core/services/image.service';
+import { ImageService, ImageSize } from 'src/app/core/services/image.service';
 
 @Component({
   selector: 'app-image',
@@ -7,15 +7,15 @@ import { ImageService } from 'src/app/core/services/image.service';
   styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent implements OnInit {
-  @Input() imagePath?: string;
-  @Input() size: 'small' | 'large' = 'small';
-  @Input() alt: string = '#';
-  @Input() icon?: string;
+  @Input() public imagePath?: string;
+  @Input() public size: ImageSize = ImageSize.Small;
+  @Input() public alt: string = '#';
+  @Input() public icon?: string;
   public src: string = '';
 
   constructor(private imageService: ImageService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.imagePath) {
       this.src = this.imageService.getImage(this.imagePath, this.size);
     }

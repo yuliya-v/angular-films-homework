@@ -7,12 +7,12 @@ import { Actor } from 'src/app/core/models/actor.model';
   styleUrls: ['./cast-member.component.scss'],
 })
 export class CastMemberComponent implements OnInit {
-  @Input() data?: Actor;
+  @Input() public data?: Actor;
   public name: string = '';
   public character: string = '';
   public imagePath: string = '';
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.data) {
       this.imagePath = this.data.profilePath || '';
       this.name = this.data.name;

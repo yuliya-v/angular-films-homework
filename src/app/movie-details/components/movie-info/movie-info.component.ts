@@ -11,7 +11,7 @@ const MINUTES_IN_HOUR = 60;
   providers: [CurrencyPipe],
 })
 export class MovieInfoComponent implements OnInit {
-  @Input() data?: MovieDetails;
+  @Input() public data?: MovieDetails;
   public title: string = '';
   public overview: string = '';
   public releaseDate: string = '';
@@ -22,7 +22,7 @@ export class MovieInfoComponent implements OnInit {
 
   constructor(private currencyPipe: CurrencyPipe) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.data) {
       this.title = this.data.title;
       this.overview = this.data.overview;

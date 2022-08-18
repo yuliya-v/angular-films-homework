@@ -8,7 +8,7 @@ import { GenreService } from 'src/app/core/services/genre.service';
   styleUrls: ['./movie.component.scss'],
 })
 export class MovieComponent implements OnInit {
-  @Input() data?: Movie;
+  @Input() public data?: Movie;
   public title: string = '';
   public src: string = '';
   public rating: number = 0;
@@ -17,7 +17,7 @@ export class MovieComponent implements OnInit {
 
   constructor(private genreService: GenreService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.data) {
       this.title = this.data.title;
       this.rating = this.data.voteAverage;

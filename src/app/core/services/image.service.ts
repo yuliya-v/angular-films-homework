@@ -2,16 +2,21 @@ import { Injectable } from '@angular/core';
 
 const BASE_LINK = 'https://image.tmdb.org/t/p/';
 
+export enum ImageSize {
+  Small = 'Small',
+  Large = 'Large',
+}
+
 enum ImageSizePath {
-  small = 'w185//',
-  large = 'w300//',
+  Small = 'w185//',
+  Large = 'w300//',
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
-  public getImage(path: string, size: keyof typeof ImageSizePath): string {
+  public getImage(path: string, size: ImageSize): string {
     return BASE_LINK + ImageSizePath[size] + path;
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActorPhoto } from 'src/app/core/models/actor-photo';
-import { ImageService } from 'src/app/core/services/image.service';
+import { ImageService, ImageSize } from 'src/app/core/services/image.service';
 
 @Component({
   selector: 'app-actor-photos',
@@ -8,11 +8,11 @@ import { ImageService } from 'src/app/core/services/image.service';
   styleUrls: ['./actor-photos.component.scss'],
 })
 export class ActorPhotosComponent {
-  @Input() data: ActorPhoto[] = [];
+  @Input() public data: ActorPhoto[] = [];
 
   constructor(private imageService: ImageService) {}
 
   public getSrc(path: string): string {
-    return this.imageService.getImage(path, 'small');
+    return this.imageService.getImage(path, ImageSize.Small);
   }
 }

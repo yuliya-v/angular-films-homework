@@ -3,6 +3,7 @@ import { Actor } from 'src/app/core/models/actor.model';
 import { Image } from 'src/app/core/models/image.model';
 import { MovieDetails } from 'src/app/core/models/movie-details.model';
 import { Movie } from 'src/app/core/models/movie.model';
+import { ImageSize } from 'src/app/core/services/image.service';
 import { ACTORS_DATA } from 'src/app/data/actors.mock';
 import { IMAGES_DATA } from 'src/app/data/images.mock';
 import { MOVIE_DETAILS } from 'src/app/data/movie-details.mock';
@@ -14,14 +15,15 @@ import { MOVIES_DATA } from 'src/app/data/movies.mock';
   styleUrls: ['./movie-details-page.component.scss'],
 })
 export class MovieDetailsPageComponent implements OnInit {
-  @Input() movie: MovieDetails = MOVIE_DETAILS;
+  @Input() public movie: MovieDetails = MOVIE_DETAILS;
   public actors: Actor[] = [];
   public images: Image[] = [];
   public recommendations: Movie[] = [];
   public posterPath: string = '';
   public rating: number = 0;
+  public moviePosterSize: ImageSize = ImageSize.Large;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.actors = ACTORS_DATA;
     this.recommendations = MOVIES_DATA.reverse();
     this.images = IMAGES_DATA;

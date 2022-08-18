@@ -7,13 +7,13 @@ import { ActorDetails } from 'src/app/core/models/actor-details';
   styleUrls: ['./actor-details.component.scss'],
 })
 export class ActorDetailsComponent implements OnInit {
-  @Input() data?: ActorDetails;
+  @Input() public data?: ActorDetails;
   public name: string = '';
   public birthDay: string = '';
   public birthPlace: string = '';
   public biography: string = '';
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.data) {
       this.name = this.data.name;
       this.birthDay = this.data.birthday;

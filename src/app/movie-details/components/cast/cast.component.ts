@@ -9,10 +9,10 @@ const INIT_ACTORS_NUMBER = 6;
   styleUrls: ['./cast.component.scss'],
 })
 export class CastComponent implements OnInit {
-  @Input() data: Actor[] = [];
+  @Input() public data: Actor[] = [];
   public currentData: Actor[] = [];
 
-  ngOnInit() {
+  public ngOnInit() {
     if (this.data) {
       this.currentData = this.data.slice(0, INIT_ACTORS_NUMBER);
     }

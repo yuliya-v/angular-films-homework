@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./genres-list.component.scss'],
 })
 export class GenresListComponent {
-  @Input() genres: string[] = [];
+  @Input() public genres: string[] = [];
 }

@@ -9,7 +9,7 @@ import { MoviesService } from 'src/app/core/services/movies.service';
 export class MainPageComponent implements OnInit {
   constructor(public moviesService: MoviesService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.moviesService.getAll();
   }
 }

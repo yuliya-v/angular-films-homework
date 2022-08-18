@@ -7,5 +7,5 @@ import { Image } from 'src/app/core/models/image.model';
   styleUrls: ['./images.component.scss'],
 })
 export class ImagesComponent {
-  @Input() data: Image[] = [];
+  @Input() public data: Image[] = [];
 }

@@ -7,6 +7,6 @@ import { Movie } from 'src/app/core/models/movie.model';
   styleUrls: ['./movie-grid.component.scss'],
 })
 export class MovieGridComponent {
-  @Input() data?: Movie[];
-  @Input() title?: string;
+  @Input() public data?: Movie[];
+  @Input() public title?: string;
 }
