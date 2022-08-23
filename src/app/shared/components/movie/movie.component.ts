@@ -10,7 +10,6 @@ import { GenreService } from 'src/app/core/services/genre.service';
 export class MovieComponent implements OnInit {
   @Input() public data?: Movie;
   public title: string = '';
-  public src: string = '';
   public rating: number = 0;
   public imagePath: string = '';
   public genres: string[] = [];

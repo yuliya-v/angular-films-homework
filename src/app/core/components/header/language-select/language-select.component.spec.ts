@@ -1,5 +1,5 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LanguageSelectComponent } from './language-select.component';
 
 describe('LanguageSelectComponent', () => {
@@ -9,6 +9,7 @@ describe('LanguageSelectComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LanguageSelectComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LanguageSelectComponent);

@@ -1,5 +1,5 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GenresListComponent } from './genres-list.component';
 
 describe('GenresListComponent', () => {
@@ -9,6 +9,7 @@ describe('GenresListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GenresListComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GenresListComponent);

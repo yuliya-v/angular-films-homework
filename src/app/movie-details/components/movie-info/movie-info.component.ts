@@ -35,7 +35,7 @@ export class MovieInfoComponent implements OnInit {
     }
   }
 
-  private transformCurrency(amount: number): string {
+  public transformCurrency(amount: number): string {
     return (
       this.currencyPipe
         .transform(amount, 'USD', undefined, '0.0-0')

@@ -19,4 +19,9 @@ describe('ActorPhotosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should get image src', () => {
+    const path = 'path';
+    expect(component.getSrc(path)).toContain(path);
+  });
 });

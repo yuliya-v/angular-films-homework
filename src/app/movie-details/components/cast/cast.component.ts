@@ -11,18 +11,19 @@ const INIT_ACTORS_NUMBER = 6;
 export class CastComponent implements OnInit {
   @Input() public data: Actor[] = [];
   public currentData: Actor[] = [];
+  public initActorsNumber: number = INIT_ACTORS_NUMBER;
 
   public ngOnInit() {
     if (this.data) {
-      this.currentData = this.data.slice(0, INIT_ACTORS_NUMBER);
+      this.currentData = this.data.slice(0, this.initActorsNumber);
     }
   }
 
   public toggleActors(): void {
-    if (this.currentData.length === INIT_ACTORS_NUMBER) {
+    if (this.currentData.length === this.initActorsNumber) {
       this.currentData = this.data;
     } else {
-      this.currentData = this.data.slice(0, INIT_ACTORS_NUMBER);
+      this.currentData = this.data.slice(0, this.initActorsNumber);
     }
   }
 }
