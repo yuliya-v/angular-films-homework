@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, map, retry } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, map, retry, tap } from 'rxjs';
 
 interface MovieResponseItem {
   poster_path: string;
@@ -35,15 +35,22 @@ const BASE_URL = 'https://api.themoviedb.org/3/movie/';
 })
 export class MoviesService {
   public sorting = new BehaviorSubject<MoviesSorting>('popular');
-  public movies?: Movie[];
+  public selectedPage = new BehaviorSubject<number>(1);
+  public moviesLoadStatus: boolean = false;
+  public movies: Movie[] = [];
+  public totalPages: number = 0;
 
   constructor(private http: HttpClient) {
     this.sorting.subscribe(sorting => {
       this.getMovies(sorting);
     });
+    this.selectedPage.pipe(distinctUntilChanged()).subscribe(pageNum => {
+      this.getMovies(this.sorting.value, pageNum);
+    });
   }
 
   public getMovies(sorting: MoviesSorting, page: number = 1): void {
+    this.moviesLoadStatus = false;
     const params = new HttpParams()
       .set('api_key', '322e31327d29061a7871205c36d54cfa')
       .set('page', `${page}`);
@@ -54,6 +61,9 @@ export class MoviesService {
       })
       .pipe(
         retry(1),
+        tap(movieResponse => {
+          this.totalPages = movieResponse.total_pages;
+        }),
         map(movieResponse => {
           return movieResponse.results.map(movieData => ({
             ...movieData,
@@ -66,6 +76,7 @@ export class MoviesService {
       )
       .subscribe(movies => {
         this.movies = movies;
+        this.moviesLoadStatus = true;
       });
   }
 }

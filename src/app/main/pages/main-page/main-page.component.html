@@ -1,5 +1,9 @@
-<div class="sorting">
-  <app-sorting></app-sorting>
+<div [hidden]="!moviesService.moviesLoadStatus">
+  <div class="sorting">
+    <app-sorting></app-sorting>
+  </div>
+  <app-movie-grid [data]="moviesService.movies"></app-movie-grid>
+  <app-paginator
+    [totalPages]="moviesService.totalPages"
+    (pageSelectEvent)="moviesService.selectedPage.next($event)"></app-paginator>
 </div>
-<app-movie-grid [data]="moviesService.movies"></app-movie-grid>
-<app-paginator [totalPages]="5"></app-paginator>
