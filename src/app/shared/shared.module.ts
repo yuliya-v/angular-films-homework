@@ -6,6 +6,7 @@ import { MovieGridComponent } from './components/movie-grid/movie-grid.component
 import { ImageSourceDirective } from './directives/image-source.directive';
 import { ImageComponent } from './components/image/image.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,9 @@ import { RatingComponent } from './components/rating/rating.component';
     ImageComponent,
     RatingComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
   exports: [
+    ReactiveFormsModule,
     MovieComponent,
     MovieGridComponent,
     MaterialModule,

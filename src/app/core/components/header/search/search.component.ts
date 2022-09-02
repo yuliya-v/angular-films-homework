@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs';
 import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
@@ -21,11 +21,17 @@ export class SearchComponent implements OnInit {
       .pipe(
         debounceTime(1000),
         distinctUntilChanged(),
+        tap(val => console.log(val)),
         filter(val => !!val && val.length > 1)
       )
       .subscribe(searchString => {
-        if (searchString) console.log(searchString);
+        // console.log('val');
         // if (searchString) this.searchService.search(searchString);
+        // this.searchService.search(searchString);
       });
+  }
+
+  public search() {
+    if (this.searchValue.value) this.searchService.search(this.searchValue.value);
   }
 }

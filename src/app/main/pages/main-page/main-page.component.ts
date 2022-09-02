@@ -6,10 +6,6 @@ import { MoviesService } from 'src/app/core/services/movies.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
   constructor(public moviesService: MoviesService) {}
-
-  public ngOnInit() {
-    this.moviesService.getAll();
-  }
 }

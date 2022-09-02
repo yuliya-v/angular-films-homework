@@ -1,4 +1,8 @@
-<mat-button-toggle-group name="sorting" aria-label="sorting" class="movie-sorting">
+<mat-button-toggle-group
+  class="movie-sorting"
+  name="sorting"
+  aria-label="sorting"
+  [formControl]="sorting">
   <mat-button-toggle value="popular" class="btn">Popular</mat-button-toggle>
   <mat-button-toggle value="topRated" class="btn">Top rated</mat-button-toggle>
   <mat-button-toggle value="upcoming" class="btn">Upcoming</mat-button-toggle>

@@ -7,12 +7,14 @@ import { MainModule } from './main/main.module';
 import { MovieDetailsModule } from './movie-details/movie-details.module';
 import { MatButtonModule } from '@angular/material/button';
 import { ActorProfileModule } from './actor-profile/actor-profile.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MainModule,
     MatButtonModule,
