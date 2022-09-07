@@ -10,6 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatPaginatorModule,
     MatChipsModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -37,6 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatPaginatorModule,
     MatChipsModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

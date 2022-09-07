@@ -2,33 +2,18 @@ import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, distinctUntilChanged, map, retry, tap } from 'rxjs';
-
-interface MovieResponseItem {
-  poster_path: string;
-  overview: string;
-  release_date: string;
-  genre_ids: number[];
-  id: number;
-  title: string;
-  vote_average: number;
-}
-
-interface MovieResponse {
-  page: 1;
-  results: MovieResponseItem[];
-  total_results: number;
-  total_pages: number;
-}
+import { API_KEY, BASE_URL } from '../constants/constants';
+import { MoviesResponse } from '../models/http-responses';
 
 enum MoviesPath {
-  popular = 'popular',
-  topRated = 'top_rated',
-  upcoming = 'upcoming',
+  popular = 'movie/popular',
+  topRated = 'movie/top_rated',
+  upcoming = 'movie/upcoming',
 }
 
 export type MoviesSorting = keyof typeof MoviesPath;
 
-const BASE_URL = 'https://api.themoviedb.org/3/movie/';
+const HTTP_PARAMS = new HttpParams().set('api_key', API_KEY);
 
 @Injectable({
   providedIn: 'root',
@@ -39,33 +24,66 @@ export class MoviesService {
   public moviesLoadStatus: boolean = false;
   public movies: Movie[] = [];
   public totalPages: number = 0;
+  public query = new BehaviorSubject<null | string>(null);
 
   constructor(private http: HttpClient) {
     this.sorting.subscribe(sorting => {
       this.getMovies(sorting);
     });
     this.selectedPage.pipe(distinctUntilChanged()).subscribe(pageNum => {
-      this.getMovies(this.sorting.value, pageNum);
+      if (this.query.value) this.getMoviesByQuery(this.query.value, pageNum);
+      else this.getMovies(this.sorting.value, pageNum);
+    });
+    this.query.subscribe(query => {
+      if (query) this.getMoviesByQuery(query);
+      else this.getMovies(this.sorting.value);
     });
   }
 
   public getMovies(sorting: MoviesSorting, page: number = 1): void {
     this.moviesLoadStatus = false;
-    const params = new HttpParams()
-      .set('api_key', '322e31327d29061a7871205c36d54cfa')
-      .set('page', `${page}`);
+    const params = HTTP_PARAMS.set('page', `${page}`);
 
     this.http
-      .get<MovieResponse>(BASE_URL + MoviesPath[sorting], {
+      .get<MoviesResponse>(BASE_URL + MoviesPath[sorting], {
         params,
       })
       .pipe(
         retry(1),
-        tap(movieResponse => {
-          this.totalPages = movieResponse.total_pages;
+        tap(moviesResponse => {
+          this.totalPages = moviesResponse.total_pages;
         }),
-        map(movieResponse => {
-          return movieResponse.results.map(movieData => ({
+        map(moviesResponse => {
+          return moviesResponse.results.map(movieData => ({
+            ...movieData,
+            posterPath: movieData.poster_path,
+            releaseDate: movieData.release_date,
+            voteAverage: movieData.vote_average,
+            genreIds: movieData.genre_ids,
+          }));
+        })
+      )
+      .subscribe(movies => {
+        this.movies = movies;
+        this.moviesLoadStatus = true;
+      });
+  }
+
+  public getMoviesByQuery(query: string, page: number = 1): void {
+    this.moviesLoadStatus = false;
+    const params = HTTP_PARAMS.set('page', `${page}`).set('query', `${query}`);
+
+    this.http
+      .get<MoviesResponse>(BASE_URL + 'search/movie', {
+        params,
+      })
+      .pipe(
+        retry(1),
+        tap(moviesResponse => {
+          this.totalPages = moviesResponse.total_pages;
+        }),
+        map(moviesResponse => {
+          return moviesResponse.results.map(movieData => ({
             ...movieData,
             posterPath: movieData.poster_path,
             releaseDate: movieData.release_date,

@@ -1,18 +1,28 @@
-<div class="top">
-  <div class="poster">
-    <div class="img-wrapper">
-      <app-image
-        [imagePath]="posterPath"
-        [alt]="'poster'"
-        [icon]="'camera_roll'"
-        [size]="moviePosterSize"></app-image>
-      <app-rating [rating]="rating" [size]="'large'"></app-rating>
+<div class="movie-details" *ngIf="movie && actors; else spinner">
+  <div class="top">
+    <div class="poster">
+      <div class="img-wrapper">
+        <app-image
+          [imagePath]="posterPath"
+          [alt]="'poster'"
+          [icon]="'camera_roll'"
+          [size]="moviePosterSize"></app-image>
+        <app-rating [rating]="rating" [size]="'large'"></app-rating>
+      </div>
+    </div>
+    <div class="info">
+      <app-movie-info [data]="movie"></app-movie-info>
+      <app-cast *ngIf="actors.length" [data]="actors"></app-cast>
+      <app-images *ngIf="images.length" [data]="images"></app-images>
     </div>
   </div>
-  <div class="info">
-    <app-movie-info [data]="movie"></app-movie-info>
-    <app-cast [data]="actors"></app-cast>
-    <app-images [data]="images"></app-images>
-  </div>
+  <app-movie-grid
+    *ngIf="recommendations.length"
+    [title]="'recommendations'"
+    [data]="recommendations"></app-movie-grid>
 </div>
-<app-movie-grid [title]="'recommendations'" [data]="recommendations"></app-movie-grid>
+<ng-template #spinner>
+  <div class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

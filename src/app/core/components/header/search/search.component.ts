@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs';
-import { SearchService } from 'src/app/core/services/search.service';
+import { MoviesService } from 'src/app/core/services/movies.service';
 
 @Component({
   selector: 'app-search',
@@ -14,24 +14,13 @@ export class SearchComponent implements OnInit {
     searchValue: this.searchValue,
   });
 
-  constructor(private searchService: SearchService) {}
+  constructor(private moviesService: MoviesService) {}
 
   ngOnInit() {
     this.searchValue.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged(),
-        tap(val => console.log(val)),
-        filter(val => !!val && val.length > 1)
-      )
+      .pipe(debounceTime(1500), distinctUntilChanged())
       .subscribe(searchString => {
-        // console.log('val');
-        // if (searchString) this.searchService.search(searchString);
-        // this.searchService.search(searchString);
+        this.moviesService.query.next(searchString);
       });
-  }
-
-  public search() {
-    if (this.searchValue.value) this.searchService.search(this.searchValue.value);
   }
 }

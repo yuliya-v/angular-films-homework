@@ -5,11 +5,10 @@ export interface MovieDetails {
   genres: Genre[];
   id: number;
   overview: string;
-  posterPath: string;
+  posterPath: string | null;
   releaseDate: string;
   revenue: number;
   runtime: number;
-  status: string;
   tagline: string;
   title: string;
   voteAverage: number;

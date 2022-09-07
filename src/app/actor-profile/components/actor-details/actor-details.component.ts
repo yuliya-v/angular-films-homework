@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActorDetails } from 'src/app/core/models/actor-details';
+import { ActorDetails } from 'src/app/core/models/actor-details.model';
 
 @Component({
   selector: 'app-actor-details',

@@ -1,6 +1,6 @@
 <div [hidden]="!moviesService.moviesLoadStatus">
   <div class="sorting">
-    <app-sorting></app-sorting>
+    <app-sorting [class.hidden]="searchMode"></app-sorting>
   </div>
   <app-movie-grid [data]="moviesService.movies"></app-movie-grid>
   <app-paginator

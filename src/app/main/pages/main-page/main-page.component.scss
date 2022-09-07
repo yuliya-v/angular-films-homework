@@ -6,8 +6,18 @@
 app-sorting {
   margin-left: auto;
   margin: 15px 0 25px auto;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+app-movie-grid {
+  padding-bottom: 0;
 }
 
 app-paginator {
-  margin: 20px auto;
+  margin: 20px auto 50px;
 }

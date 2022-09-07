@@ -7,5 +7,11 @@ import { MoviesService } from 'src/app/core/services/movies.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent {
-  constructor(public moviesService: MoviesService) {}
+  public searchMode: boolean = false;
+
+  constructor(public moviesService: MoviesService) {
+    moviesService.query.subscribe(query => {
+      this.searchMode = query ? true : false;
+    });
+  }
 }

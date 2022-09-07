@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActorDetails } from 'src/app/core/models/actor-details';
-import { ActorPhoto } from 'src/app/core/models/actor-photo';
+import { ActorDetails } from 'src/app/core/models/actor-details.model';
+import { ActorPhoto } from 'src/app/core/models/actor-photo.model';
 import { Movie } from 'src/app/core/models/movie.model';
 import { ACTOR_DATA } from 'src/app/data/actor.mock';
 import { ACTOR_PHOTOS } from 'src/app/data/actor-photos.mock';
