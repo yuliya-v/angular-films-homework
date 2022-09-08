@@ -2,7 +2,8 @@
   class="movie-sorting"
   name="sorting"
   aria-label="sorting"
-  [formControl]="sorting">
+  [formControl]="sorting"
+  (change)="sortingInputEvent.emit($event.value)">
   <mat-button-toggle value="popular" class="btn">Popular</mat-button-toggle>
   <mat-button-toggle value="topRated" class="btn">Top rated</mat-button-toggle>
   <mat-button-toggle value="upcoming" class="btn">Upcoming</mat-button-toggle>

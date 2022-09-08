@@ -1,21 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs';
-import { MoviesService, MoviesSorting } from 'src/app/core/services/movies.service';
+import { MoviesSorting } from 'src/app/core/services/movies.service';
 
 @Component({
   selector: 'app-sorting',
   templateUrl: './sorting.component.html',
   styleUrls: ['./sorting.component.scss'],
 })
-export class SortingComponent implements OnInit {
+export class SortingComponent {
   public sorting = new FormControl<MoviesSorting>('popular');
+  @Output() public sortingInputEvent = new EventEmitter<MoviesSorting>();
 
-  constructor(private moviesService: MoviesService) {}
-
-  ngOnInit() {
-    this.sorting.valueChanges.pipe(debounceTime(300)).subscribe(value => {
-      if (value) this.moviesService.sorting.next(value);
-    });
-  }
+  constructor() {}
 }
