@@ -1,14 +1,27 @@
-<div class="top">
-  <div class="poster">
-    <app-image
-      [imagePath]="actor.profilePath"
-      [alt]="'actor photo'"
-      [icon]="'person'"
-      [size]="actorImageSize"></app-image>
+<div class="actor-profile" *ngIf="actor; else spinner">
+  <div class="top">
+    <div class="poster">
+      <app-image
+        [imagePath]="actor.profilePath"
+        [alt]="'actor photo'"
+        [icon]="'person'"
+        [size]="actorImageSize"></app-image>
+    </div>
+    <div class="info">
+      <app-actor-details [data]="actor"></app-actor-details>
+      <app-actor-photos [data]="photos"></app-actor-photos>
+    </div>
   </div>
-  <div class="info">
-    <app-actor-details [data]="actor"></app-actor-details>
-    <app-actor-photos [data]="photos"></app-actor-photos>
-  </div>
+  <app-movie-grid
+    [title]="'known by'"
+    [data]="visibleRelatedMovies"
+    infinite-scroll
+    [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()"></app-movie-grid>
 </div>
-<app-movie-grid [title]="'known by'" [data]="relatedMovies"></app-movie-grid>
+<ng-template #spinner>
+  <div class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

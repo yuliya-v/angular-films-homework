@@ -23,7 +23,7 @@ export class MovieDetailsPageComponent implements OnInit {
   public rating: number = 0;
   public moviePosterSize: ImageSize = ImageSize.Large;
   private readonly IMAGES_NUM = 12;
-  private readonly ACTORS_NUM = 36;
+  private readonly ACTORS_NUM = 30;
 
   constructor(private movieDetailsService: MovieDetailsService) {}
 
