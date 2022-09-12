@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, retry } from 'rxjs';
-import { API_KEY, BASE_URL } from '../constants/constants';
 import { MoviesResponse } from '../models/http-responses';
 
 enum MoviesPath {
@@ -13,13 +12,12 @@ enum MoviesPath {
 
 export type MoviesSorting = keyof typeof MoviesPath;
 
-const HTTP_PARAMS = new HttpParams().set('api_key', API_KEY);
-
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  public query = new BehaviorSubject<null | string>(null);
+  public query$ = new BehaviorSubject<null | string>(null);
+  public sorting$ = new BehaviorSubject<MoviesSorting>('popular');
 
   constructor(private http: HttpClient) {}
 
@@ -27,8 +25,8 @@ export class MoviesService {
     sorting: MoviesSorting,
     page: number = 1
   ): Observable<{ movies: Movie[]; totalPages: number }> {
-    const params = HTTP_PARAMS.set('page', `${page}`);
-    const url = BASE_URL + MoviesPath[sorting];
+    const params = new HttpParams().set('page', `${page}`);
+    const url = MoviesPath[sorting];
     return this.getMovies(url, params);
   }
 
@@ -36,8 +34,8 @@ export class MoviesService {
     query: string,
     page: number = 1
   ): Observable<{ movies: Movie[]; totalPages: number }> {
-    const url = BASE_URL + 'search/movie';
-    const params = HTTP_PARAMS.set('page', `${page}`).set('query', `${query}`);
+    const url = 'search/movie';
+    const params = new HttpParams().set('page', `${page}`).set('query', `${query}`);
     return this.getMovies(url, params);
   }
 

@@ -13,7 +13,7 @@
     </div>
   </div>
   <app-movie-grid
-    [title]="'known by'"
+    [title]="translateService.instant('ACTOR.MOVIES')"
     [data]="visibleRelatedMovies"
     infinite-scroll
     [infiniteScrollDistance]="0"

@@ -7,7 +7,10 @@ import { MainModule } from './main/main.module';
 import { MovieDetailsModule } from './movie-details/movie-details.module';
 import { MatButtonModule } from '@angular/material/button';
 import { ActorProfileModule } from './actor-profile/actor-profile.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppInterceptor } from './core/interceptors/app.interceptor';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,8 +23,15 @@ import { HttpClientModule } from '@angular/common/http';
     MovieDetailsModule,
     ActorProfileModule,
     MatButtonModule,
+    TranslateModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

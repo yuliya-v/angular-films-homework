@@ -20,8 +20,10 @@ export class MovieComponent implements OnInit {
     if (this.data) {
       this.title = this.data.title;
       this.rating = this.data.voteAverage;
-      this.genres = this.data.genreIds.map(el => this.genreService.getGenre(el));
       this.imagePath = this.data.posterPath;
+      this.genreService.getGenresList(this.data.genreIds).subscribe(genresList => {
+        this.genres = genresList;
+      });
     }
   }
 }

@@ -1,0 +1,12 @@
+<app-movie-grid [data]="movies" *ngIf="movies.length; else spinner"></app-movie-grid>
+<app-paginator
+  *ngIf="totalPages > 1"
+  [totalPages]="totalPages"
+  [class.hidden]="!movies.length"
+  (pageSelectEvent)="updatePage($event)"></app-paginator>
+<ng-template #spinner>
+  <div class="spinner-wrapper">
+    <mat-spinner *ngIf="!noResults"></mat-spinner>
+    <p *ngIf="noResults">no results</p>
+  </div>
+</ng-template>

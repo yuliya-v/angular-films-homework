@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <mat-form-field appearance="outline" color="accent">
-    <mat-label>Search movies...</mat-label>
-    <input matInput placeholder="Search movies..." [formControl]="searchValue" />
+    <mat-label>{{ 'HOME.SEARCH' | translate }}...</mat-label>
+    <input matInput [formControl]="searchValue" autocomplete="off" />
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 </form>

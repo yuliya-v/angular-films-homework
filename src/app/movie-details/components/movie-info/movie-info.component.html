@@ -1,25 +1,25 @@
 <h2>
-  <span>Title:</span>
+  <span>{{ 'MOVIE.TITLE' | translate }}:</span>
   {{ title }}
 </h2>
 <p>
-  <span>Overview:</span>
+  <span>{{ 'MOVIE.OVERVIEW' | translate }}:</span>
   {{ overview }}
 </p>
 <p>
-  <span>Release date:</span>
+  <span>{{ 'MOVIE.RELEASE' | translate }}:</span>
   {{ releaseDate }}
 </p>
 <p>
-  <span>Budget:</span>
+  <span>{{ 'MOVIE.BUDGET' | translate }}:</span>
   {{ budget }}
 </p>
 <p>
-  <span>Revenue:</span>
+  <span>{{ 'MOVIE.REVENUE' | translate }}:</span>
   {{ revenue }}
 </p>
 <p>
-  <span>Duration:</span>
+  <span>{{ 'MOVIE.DURATION' | translate }}:</span>
   {{ duration }}
 </p>
 <app-genres-list [genres]="genres"></app-genres-list>

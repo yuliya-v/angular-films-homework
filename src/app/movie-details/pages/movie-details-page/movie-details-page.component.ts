@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Actor } from 'src/app/core/models/actor.model';
 import { Image } from 'src/app/core/models/image.model';
 import { MovieDetails } from 'src/app/core/models/movie-details.model';
@@ -25,7 +26,10 @@ export class MovieDetailsPageComponent implements OnInit {
   private readonly IMAGES_NUM = 12;
   private readonly ACTORS_NUM = 30;
 
-  constructor(private movieDetailsService: MovieDetailsService) {}
+  constructor(
+    private movieDetailsService: MovieDetailsService,
+    public translateService: TranslateService
+  ) {}
 
   public ngOnInit() {
     this.movieDetailsService.getMovie(this.movieId).subscribe(movie => {

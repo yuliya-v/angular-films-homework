@@ -1,11 +1,11 @@
 <header>
-  <h3>Top Billed Cast</h3>
+  <h3>{{ 'MOVIE.CAST' | translate }}</h3>
   <button
     mat-stroked-button
     class="btn"
     (click)="toggleActors()"
     [class.active]="currentData.length === data.length">
-    Show all
+    {{ 'MOVIE.CAST_BTN' | translate }}
   </button>
 </header>
 <div class="grid">

@@ -7,6 +7,7 @@ import { ImageSourceDirective } from './directives/image-source.directive';
 import { ImageComponent } from './components/image/image.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ImageSourceDirective,
     ImageComponent,
     RatingComponent,
+    TranslateModule,
   ],
 })
 export class SharedModule {}

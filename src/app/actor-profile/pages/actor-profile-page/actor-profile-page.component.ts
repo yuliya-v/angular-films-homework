@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ActorDetails } from 'src/app/core/models/actor-details.model';
 import { ActorPhoto } from 'src/app/core/models/actor-photo.model';
 import { Movie } from 'src/app/core/models/movie.model';
@@ -22,7 +23,7 @@ export class ActorProfilePageComponent implements OnInit {
   private currentChunk: number = 0;
   private chunksLimit: number = 0;
 
-  constructor(private actorsService: ActorsService) {}
+  constructor(private actorsService: ActorsService, public translateService: TranslateService) {}
 
   public ngOnInit() {
     this.actorsService.getActor(this.actorId).subscribe(actor => {

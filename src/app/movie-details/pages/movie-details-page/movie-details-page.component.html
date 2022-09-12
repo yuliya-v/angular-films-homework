@@ -18,7 +18,7 @@
   </div>
   <app-movie-grid
     *ngIf="recommendations.length"
-    [title]="'recommendations'"
+    [title]="translateService.instant('MOVIE.RECOMMENDATIONS')"
     [data]="recommendations"></app-movie-grid>
 </div>
 <ng-template #spinner>

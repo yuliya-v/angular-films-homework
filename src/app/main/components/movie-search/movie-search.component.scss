@@ -1,0 +1,13 @@
+app-movie-grid {
+  padding: 30px 0 0;
+  margin-bottom: 40px;
+}
+
+app-paginator {
+  margin: 20px auto 50px;
+  opacity: 1;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
