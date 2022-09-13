@@ -1,0 +1,18 @@
+<div class="top">
+  <div class="poster">
+    <div class="img-wrapper">
+      <app-image
+        [imagePath]="posterPath"
+        [alt]="'poster'"
+        [icon]="'camera_roll'"
+        [size]="moviePosterSize"></app-image>
+      <app-rating [rating]="rating" [size]="'large'"></app-rating>
+    </div>
+  </div>
+  <div class="info">
+    <app-movie-info [data]="movie"></app-movie-info>
+    <app-cast [data]="actors"></app-cast>
+    <app-images [data]="images"></app-images>
+  </div>
+</div>
+<app-movie-grid [title]="'recommendations'" [data]="recommendations"></app-movie-grid>

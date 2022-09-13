@@ -1,0 +1,8 @@
+<h3>Photos</h3>
+<div class="grid">
+  <app-image
+    *ngFor="let photo of data"
+    [imagePath]="photo.filePath"
+    [alt]="'photo'"
+    [icon]="'person'"></app-image>
+</div>

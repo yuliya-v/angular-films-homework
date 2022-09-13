@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+mat-option {
+  text-transform: uppercase;
+}
+
+::ng-deep .lang-select .mat-form-field-wrapper {
+  width: 50px;
+}
+
+::ng-deep .lang-select .mat-form-field-infix {
+  padding: 2px 0 7px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+::ng-deep .lang-select .mat-select-arrow-wrapper {
+  display: none;
+}

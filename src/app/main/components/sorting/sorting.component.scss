@@ -1,0 +1,12 @@
+.btn {
+  padding: 0;
+  margin: 0;
+  height: 32px;
+  font-size: 12px;
+  border-color:  var(--color-light);
+  background-color: transparent;
+}
+
+::ng-deep .movie-sorting .mat-button-toggle-label-content {
+  line-height: 32px;
+}

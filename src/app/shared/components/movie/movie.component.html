@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="img-wrapper">
+    <app-image [imagePath]="imagePath" [alt]="'poster'" [icon]="'camera_roll'"></app-image>
+    <app-rating [rating]="rating"></app-rating>
+  </div>
+  <h3 class="title">{{ title }}</h3>
+  <ul class="genres">
+    <li class="genre" *ngFor="let genre of genres">{{ genre }}</li>
+  </ul>
+</div>

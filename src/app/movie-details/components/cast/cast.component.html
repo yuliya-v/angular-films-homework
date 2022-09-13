@@ -1,0 +1,13 @@
+<header>
+  <h3>Top Billed Cast</h3>
+  <button
+    mat-stroked-button
+    class="btn"
+    (click)="toggleActors()"
+    [class.active]="currentData.length === data.length">
+    Show all
+  </button>
+</header>
+<div class="grid">
+  <app-cast-member *ngFor="let actor of currentData" [data]="actor"></app-cast-member>
+</div>

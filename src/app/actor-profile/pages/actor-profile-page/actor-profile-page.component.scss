@@ -1,0 +1,21 @@
+:host {
+  margin: 20px auto;
+}
+
+.top {
+  display: flex;
+  margin-top: 25px;
+}
+
+.info {
+  margin-left: 30px;
+}
+
+app-image {
+  height: 480px;
+  width: 320px;
+}
+
+app-movie-grid {
+  margin-top: 55px;
+}

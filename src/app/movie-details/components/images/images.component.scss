@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: space-between;
+  grid-gap: 30px;
+}
+
+app-image {
+  width: 185px;
+  height: 105px;
+}
