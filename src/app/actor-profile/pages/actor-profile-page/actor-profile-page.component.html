@@ -9,7 +9,7 @@
     </div>
     <div class="info">
       <app-actor-details [data]="actor"></app-actor-details>
-      <app-actor-photos [data]="photos"></app-actor-photos>
+      <app-actor-photos *ngIf="photos" [data]="photos"></app-actor-photos>
     </div>
   </div>
   <app-movie-grid

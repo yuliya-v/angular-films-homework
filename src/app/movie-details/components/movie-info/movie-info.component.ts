@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MovieDetails } from 'src/app/core/models/movie-details.model';
 
 const MINUTES_IN_HOUR = 60;
@@ -10,7 +10,7 @@ const MINUTES_IN_HOUR = 60;
   styleUrls: ['./movie-info.component.scss'],
   providers: [CurrencyPipe],
 })
-export class MovieInfoComponent implements OnInit {
+export class MovieInfoComponent implements OnInit, OnChanges {
   @Input() public data?: MovieDetails;
   public title: string = '';
   public overview: string = '';
@@ -32,6 +32,14 @@ export class MovieInfoComponent implements OnInit {
         this.transformCurrency.bind(this)
       );
       this.duration = this.transformDuration(this.data.runtime);
+    }
+  }
+
+  public ngOnChanges(): void {
+    if (this.data) {
+      this.title = this.data.title;
+      this.overview = this.data.overview;
+      this.genres = this.data.genres.map(el => el.name);
     }
   }
 

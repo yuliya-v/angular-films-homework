@@ -5,6 +5,17 @@
   line-height: 1.15;
 }
 
+a {
+  display: block;
+  color: var(--color-text);
+
+  &:hover {
+    h4 {
+      color: var(--color-light);
+    }
+  }
+}
+
 app-image {
   width: 115px;
   height: 160px;
@@ -15,6 +26,7 @@ h4 {
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 p {

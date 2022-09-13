@@ -8,6 +8,7 @@ import { Actor } from 'src/app/core/models/actor.model';
 })
 export class CastMemberComponent implements OnInit {
   @Input() public data?: Actor;
+  public id: string = '';
   public name: string = '';
   public character: string = '';
   public imagePath: string = '';
@@ -15,6 +16,7 @@ export class CastMemberComponent implements OnInit {
   public ngOnInit(): void {
     if (this.data) {
       this.imagePath = this.data.profilePath || '';
+      this.id = this.data.id.toString();
       this.name = this.data.name;
       this.character = this.data.character;
     }

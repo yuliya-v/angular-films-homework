@@ -1,6 +1,7 @@
 <header>
   <h3>{{ 'MOVIE.CAST' | translate }}</h3>
   <button
+    *ngIf="data.length > initActorsNumber"
     mat-stroked-button
     class="btn"
     (click)="toggleActors()"

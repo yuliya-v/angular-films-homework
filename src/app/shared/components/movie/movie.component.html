@@ -1,4 +1,4 @@
-<div class="container">
+<a [routerLink]="'/movie/' + id" class="container">
   <div class="img-wrapper">
     <app-image [imagePath]="imagePath" [alt]="'poster'" [icon]="'camera_roll'"></app-image>
     <app-rating [rating]="rating"></app-rating>
@@ -7,4 +7,4 @@
   <ul class="genres">
     <li class="genre" *ngFor="let genre of genres">{{ genre }}</li>
   </ul>
-</div>
+</a>

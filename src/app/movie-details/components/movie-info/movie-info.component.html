@@ -10,11 +10,11 @@
   <span>{{ 'MOVIE.RELEASE' | translate }}:</span>
   {{ releaseDate }}
 </p>
-<p>
+<p *ngIf="data?.budget">
   <span>{{ 'MOVIE.BUDGET' | translate }}:</span>
   {{ budget }}
 </p>
-<p>
+<p *ngIf="data?.revenue">
   <span>{{ 'MOVIE.REVENUE' | translate }}:</span>
   {{ revenue }}
 </p>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActorDetails } from 'src/app/core/models/actor-details.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActorDetails } from 'src/app/core/models/actor-details.model';
   templateUrl: './actor-details.component.html',
   styleUrls: ['./actor-details.component.scss'],
 })
-export class ActorDetailsComponent implements OnInit {
+export class ActorDetailsComponent implements OnInit, OnChanges {
   @Input() public data?: ActorDetails;
   public name: string = '';
   public birthDay: string = '';
@@ -17,6 +17,14 @@ export class ActorDetailsComponent implements OnInit {
     if (this.data) {
       this.name = this.data.name;
       this.birthDay = this.data.birthday;
+      this.birthPlace = this.data.placeOfBirth;
+      this.biography = this.data.biography;
+    }
+  }
+
+  public ngOnChanges(): void {
+    if (this.data) {
+      this.name = this.data.name;
       this.birthPlace = this.data.placeOfBirth;
       this.biography = this.data.biography;
     }

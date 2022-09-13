@@ -8,6 +8,7 @@ import { ImageComponent } from './components/image/image.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ImageComponent,
     RatingComponent,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, RouterModule],
   exports: [
     ReactiveFormsModule,
     MovieComponent,
@@ -27,6 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ImageComponent,
     RatingComponent,
     TranslateModule,
+    RouterModule,
   ],
 })
 export class SharedModule {}

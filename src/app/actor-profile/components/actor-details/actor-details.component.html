@@ -1,15 +1,15 @@
 <h2>
   {{ name }}
 </h2>
-<p>
+<p *ngIf="birthDay">
   <span>{{ 'ACTOR.BIRTHDAY' | translate }}:</span>
   {{ birthDay }}
 </p>
-<p>
+<p *ngIf="birthPlace">
   <span>{{ 'ACTOR.PLACE_OF_BIRTH' | translate }}:</span>
   {{ birthPlace }}
 </p>
-<p>
+<p *ngIf="biography">
   <span>{{ 'ACTOR.BIOGRAPHY' | translate }}:</span>
   {{ biography }}
 </p>

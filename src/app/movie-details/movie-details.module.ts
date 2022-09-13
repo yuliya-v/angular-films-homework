@@ -7,6 +7,8 @@ import { CastComponent } from './components/cast/cast.component';
 import { CastMemberComponent } from './components/cast-member/cast-member.component';
 import { ImagesComponent } from './components/images/images.component';
 import { SharedModule } from '../shared/shared.module';
+import MovieDetailsRoutingModule from './movie-details-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     CastMemberComponent,
     ImagesComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, MovieDetailsRoutingModule],
   exports: [MovieDetailsPageComponent],
 })
 export class MovieDetailsModule {}

@@ -2,4 +2,9 @@ mat-form-field {
   width: 550px;
   margin: 0;
   padding: 0;
+
+}
+
+::ng-deep .search .mat-form-field-wrapper {
+  padding-bottom: 0;
 }

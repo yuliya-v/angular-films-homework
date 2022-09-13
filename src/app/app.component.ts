@@ -9,16 +9,17 @@ import { TRANSLATION_RU } from './core/i18n/ru';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-films-homework';
-  currentPage: 'main' | 'movieDetails' | 'actorDetails' = 'main';
+  constructor(private translate: TranslateService) {
+    this.setTranslation();
+  }
 
-  constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'ru']);
-    translate.setDefaultLang('en');
-    translate.setTranslation('en', TRANSLATION_EN);
-    translate.setTranslation('ru', TRANSLATION_RU);
+  private setTranslation() {
+    this.translate.addLangs(['en', 'ru']);
+    this.translate.setDefaultLang('en');
+    this.translate.setTranslation('en', TRANSLATION_EN);
+    this.translate.setTranslation('ru', TRANSLATION_RU);
 
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/en|ru/) ? browserLang : 'en');
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang?.match(/en|ru/) ? browserLang : 'en');
   }
 }

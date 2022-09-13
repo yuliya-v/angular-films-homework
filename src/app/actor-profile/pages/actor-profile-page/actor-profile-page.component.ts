@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ActorDetails } from 'src/app/core/models/actor-details.model';
 import { ActorPhoto } from 'src/app/core/models/actor-photo.model';
@@ -6,35 +7,56 @@ import { Movie } from 'src/app/core/models/movie.model';
 import { ImageSize } from 'src/app/core/services/image.service';
 import { ActorsService } from '../../services/actors.service';
 
-const ACTOR_ID = '4785';
-
 @Component({
   selector: 'app-actor-profile-page',
   templateUrl: './actor-profile-page.component.html',
   styleUrls: ['./actor-profile-page.component.scss'],
 })
 export class ActorProfilePageComponent implements OnInit {
-  @Input() public actorId = ACTOR_ID;
   public actor?: ActorDetails;
-  public photos: ActorPhoto[] = [];
+  public photos?: ActorPhoto[];
   public relatedMovies: Movie[][] = [];
   public visibleRelatedMovies: Movie[] = [];
   public actorImageSize: ImageSize = ImageSize.Large;
   private currentChunk: number = 0;
   private chunksLimit: number = 0;
 
-  constructor(private actorsService: ActorsService, public translateService: TranslateService) {}
+  constructor(
+    private actorsService: ActorsService,
+    public translateService: TranslateService,
+    private route: ActivatedRoute
+  ) {}
 
   public ngOnInit() {
-    this.actorsService.getActor(this.actorId).subscribe(actor => {
+    this.getData();
+    this.translateService.onLangChange.subscribe(() => {
+      this.updateData();
+    });
+  }
+
+  private getData() {
+    const { id } = this.route.snapshot.params;
+    this.actorsService.getActor(id).subscribe(actor => {
       this.actor = actor;
     });
-    this.actorsService.getPhotos(this.actorId).subscribe(photos => {
-      this.photos = photos;
-    });
-    this.actorsService.getCredits(this.actorId).subscribe(credits => {
+    this.actorsService.getCredits(id).subscribe(credits => {
       this.relatedMovies = this.splitArray(credits);
       this.chunksLimit = this.relatedMovies.length;
+      this.visibleRelatedMovies.push(...this.relatedMovies[this.currentChunk]);
+    });
+  }
+
+  private updateData() {
+    delete this.actor;
+    const { id } = this.route.snapshot.params;
+    this.actorsService.getActor(id).subscribe(actor => {
+      this.actor = actor;
+    });
+    this.actorsService.getCredits(id).subscribe(credits => {
+      this.relatedMovies = this.splitArray(credits);
+      this.chunksLimit = this.relatedMovies.length;
+      this.currentChunk = 0;
+      this.visibleRelatedMovies = [];
       this.visibleRelatedMovies.push(...this.relatedMovies[this.currentChunk]);
     });
   }

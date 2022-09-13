@@ -8,7 +8,13 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 
 @NgModule({
-  declarations: [MainPageComponent, SortingComponent, PaginatorComponent, MovieListComponent, MovieSearchComponent],
+  declarations: [
+    MainPageComponent,
+    SortingComponent,
+    PaginatorComponent,
+    MovieListComponent,
+    MovieSearchComponent,
+  ],
   imports: [CommonModule, SharedModule],
   exports: [MainPageComponent],
 })
