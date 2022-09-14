@@ -55,6 +55,6 @@ export class MovieInfoComponent implements OnInit, OnChanges {
   private transformDuration(duration: number): string {
     const hours = Math.floor(duration / MINUTES_IN_HOUR);
     const minutes = duration - hours * MINUTES_IN_HOUR;
-    return `${hours}:${minutes}`;
+    return `${hours}:${minutes.toString().padStart(2, '0')}`;
   }
 }

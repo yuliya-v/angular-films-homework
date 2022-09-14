@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { MovieInfoComponent } from './movie-info.component';
 
 describe('MovieInfoComponent', () => {
@@ -18,7 +19,27 @@ describe('MovieInfoComponent', () => {
     posterPath: '/2CAL2433ZeIihfX1Hb2139CX0pW.jpg',
     releaseDate: '1995-10-19',
     revenue: 100000000,
-    runtime: 190,
+    runtime: 189,
+    status: 'Released',
+    tagline: 'Come Fall In love, All Over Again..',
+    title: 'Dilwale Dulhania Le Jayenge',
+    voteAverage: 8.722,
+  };
+
+  const movieDataTranslated = {
+    budget: 13200000,
+    genres: [
+      { id: 35, name: 'Комедия' },
+      { id: 18, name: 'Драма' },
+      { id: 10749, name: 'Romance' },
+    ],
+    id: 19404,
+    overview:
+      'Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.',
+    posterPath: '/2CAL2433ZeIihfX1Hb2139CX0pW.jpg',
+    releaseDate: '1995-10-19',
+    revenue: 100000000,
+    runtime: 189,
     status: 'Released',
     tagline: 'Come Fall In love, All Over Again..',
     title: 'Dilwale Dulhania Le Jayenge',
@@ -28,6 +49,7 @@ describe('MovieInfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MovieInfoComponent],
+      imports: [TranslateModule.forRoot()],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
@@ -49,6 +71,15 @@ describe('MovieInfoComponent', () => {
   it('should transform duration', () => {
     component.data = movieData;
     component.ngOnInit();
-    expect(component.duration).toBe('3:10');
+    expect(component.duration).toBe('3:09');
+  });
+
+  it('should update data', () => {
+    component.data = movieData;
+    component.ngOnInit();
+    expect(component.genres[0]).toBe('Comedy');
+    component.data = movieDataTranslated;
+    component.ngOnChanges();
+    expect(component.genres[0]).toBe('Комедия');
   });
 });
