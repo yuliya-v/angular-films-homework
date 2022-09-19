@@ -1,4 +1,4 @@
-<div class="movie-details" *ngIf="movie && actors; else spinner">
+<div class="movie-details" *ngIf="movie && actors && !loading; else spinner">
   <div class="top">
     <div class="poster">
       <div class="img-wrapper">

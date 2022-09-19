@@ -26,7 +26,9 @@ export class SearchComponent implements OnInit {
     this.searchValue.valueChanges
       .pipe(debounceTime(1500), distinctUntilChanged())
       .subscribe(searchString => {
-        if (searchString) this.router.navigate(['/']);
+        if (searchString) {
+          this.router.navigate(['/']);
+        }
         this.moviesService.query$.next(searchString);
       });
   }

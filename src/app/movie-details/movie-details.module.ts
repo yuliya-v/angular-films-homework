@@ -8,7 +8,6 @@ import { CastMemberComponent } from './components/cast-member/cast-member.compon
 import { ImagesComponent } from './components/images/images.component';
 import { SharedModule } from '../shared/shared.module';
 import MovieDetailsRoutingModule from './movie-details-routing.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

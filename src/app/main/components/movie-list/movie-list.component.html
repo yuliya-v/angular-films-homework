@@ -1,14 +1,14 @@
-<div>
-  <div class="sorting">
-    <app-sorting
-      (sortingInputEvent)="moviesService.sorting$.next($event)"
-      [initSorting]="moviesService.sorting$.value"></app-sorting>
-  </div>
-  <app-movie-grid [data]="movies" *ngIf="movies.length; else spinner"></app-movie-grid>
+<div class="sorting">
+  <app-sorting
+    (sortingInputEvent)="moviesService.sorting$.next($event)"
+    [initSorting]="moviesService.sorting$.value"></app-sorting>
+</div>
+<div *ngIf="movies.length; else spinner">
+  <app-movie-grid [data]="movies"></app-movie-grid>
   <app-paginator
     *ngIf="totalPages > 1"
     [totalPages]="totalPages"
-    [class.hidden]="!movies.length"
+    [selectedPage]="selectedPage"
     (pageSelectEvent)="updatePage($event)"></app-paginator>
 </div>
 <ng-template #spinner>

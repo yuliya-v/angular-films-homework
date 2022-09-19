@@ -1,31 +1,28 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie.model';
 import { MoviesService } from 'src/app/core/services/movies.service';
-import { PaginatorComponent } from '../paginator/paginator.component';
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
 })
-export class MovieListComponent implements OnInit {
-  @ViewChild(PaginatorComponent) private paginator!: PaginatorComponent;
+export class MovieListComponent implements OnInit, OnDestroy {
   public movies: Movie[] = [];
   public totalPages: number = 0;
-  private selectedPage = 1;
+  public selectedPage = 1;
+  private sortingSub!: Subscription;
+  private langSub!: Subscription;
 
   constructor(public moviesService: MoviesService, public translateService: TranslateService) {}
 
   public ngOnInit() {
-    this.moviesService.sorting$.subscribe(s => {
-      if (this.paginator) {
-        this.paginator.selectedPage = 1;
-        this.paginator.repaint();
-      }
+    this.sortingSub = this.moviesService.sorting$.subscribe(s => {
       this.updatePage(1);
     });
-    this.translateService.onLangChange.subscribe(() => {
+    this.langSub = this.translateService.onLangChange.subscribe(() => {
       this.updatePage(this.selectedPage);
     });
   }
@@ -39,5 +36,9 @@ export class MovieListComponent implements OnInit {
         this.movies = data.movies;
         this.totalPages = data.totalPages;
       });
+  }
+
+  public ngOnDestroy() {
+    [this.sortingSub, this.langSub].forEach(sub => sub.unsubscribe());
   }
 }

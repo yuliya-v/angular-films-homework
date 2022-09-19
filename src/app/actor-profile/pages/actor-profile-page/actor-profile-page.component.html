@@ -1,4 +1,4 @@
-<div class="actor-profile" *ngIf="actor; else spinner">
+<div class="actor-profile" *ngIf="actor && !loading; else spinner">
   <div class="top">
     <div class="poster">
       <app-image

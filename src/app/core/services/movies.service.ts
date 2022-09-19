@@ -4,13 +4,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, retry } from 'rxjs';
 import { MoviesResponse } from '../models/http-responses';
 
-enum MoviesPath {
+enum MoviesSortPath {
   popular = 'movie/popular',
   topRated = 'movie/top_rated',
   upcoming = 'movie/upcoming',
 }
-
-export type MoviesSorting = keyof typeof MoviesPath;
+export type MoviesSorting = keyof typeof MoviesSortPath;
+const MOVIE_SEARCH_PATH = 'search/movie';
+type MoviesData = { movies: Movie[]; totalPages: number };
 
 @Injectable({
   providedIn: 'root',
@@ -21,28 +22,18 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  public getMoviesBySorting(
-    sorting: MoviesSorting,
-    page: number = 1
-  ): Observable<{ movies: Movie[]; totalPages: number }> {
+  public getMoviesBySorting(sorting: MoviesSorting, page: number = 1): Observable<MoviesData> {
     const params = new HttpParams().set('page', `${page}`);
-    const url = MoviesPath[sorting];
+    const url = MoviesSortPath[sorting];
     return this.getMovies(url, params);
   }
 
-  public getMoviesByQuery(
-    query: string,
-    page: number = 1
-  ): Observable<{ movies: Movie[]; totalPages: number }> {
-    const url = 'search/movie';
+  public getMoviesByQuery(query: string, page: number = 1): Observable<MoviesData> {
     const params = new HttpParams().set('page', `${page}`).set('query', `${query}`);
-    return this.getMovies(url, params);
+    return this.getMovies(MOVIE_SEARCH_PATH, params);
   }
 
-  public getMovies(
-    url: string,
-    params: HttpParams
-  ): Observable<{ movies: Movie[]; totalPages: number }> {
+  public getMovies(url: string, params: HttpParams): Observable<MoviesData> {
     return this.http
       .get<MoviesResponse>(url, {
         params,

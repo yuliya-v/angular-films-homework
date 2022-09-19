@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PaginatorComponent implements OnInit {
   @Input() public totalPages: number = 0;
+  @Input() public selectedPage: number = 1;
   @Output() public pageSelectEvent = new EventEmitter<number>();
   public currentPages: number[] = [];
-  public selectedPage: number = 1;
   private readonly MAX_VISIBLE_PAGES_NUMBER = 5;
 
   public ngOnInit() {
@@ -20,6 +20,7 @@ export class PaginatorComponent implements OnInit {
     this.currentPages = Array(currentPagesNumber)
       .fill('')
       .map((_, ind) => ind + 1);
+    this.repaint();
   }
 
   public selectPage(pageNumber: number) {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { Actor } from 'src/app/core/models/actor.model';
 import { Image } from 'src/app/core/models/image.model';
 import { MovieDetails } from 'src/app/core/models/movie-details.model';
@@ -13,7 +14,7 @@ import { MovieDetailsService } from '../../services/movie-details.service';
   templateUrl: './movie-details-page.component.html',
   styleUrls: ['./movie-details-page.component.scss'],
 })
-export class MovieDetailsPageComponent implements OnInit {
+export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   public movie?: MovieDetails;
   public actors?: Actor[];
   public images: Image[] = [];
@@ -21,8 +22,10 @@ export class MovieDetailsPageComponent implements OnInit {
   public posterPath: string = '';
   public rating: number = 0;
   public moviePosterSize: ImageSize = ImageSize.Large;
+  public loading: boolean = true;
   private readonly IMAGES_NUM = 12;
   private readonly ACTORS_NUM = 30;
+  private langSub!: Subscription;
 
   constructor(
     private movieDetailsService: MovieDetailsService,
@@ -32,7 +35,7 @@ export class MovieDetailsPageComponent implements OnInit {
 
   public ngOnInit() {
     this.getData();
-    this.translateService.onLangChange.subscribe(() => {
+    this.langSub = this.translateService.onLangChange.subscribe(() => {
       this.updateData();
     });
   }
@@ -43,6 +46,7 @@ export class MovieDetailsPageComponent implements OnInit {
       this.movie = movie;
       this.posterPath = movie.posterPath || '';
       this.rating = movie.voteAverage;
+      this.loading = false;
     });
 
     this.movieDetailsService.getRecommendations(id).subscribe(recommendations => {
@@ -59,14 +63,19 @@ export class MovieDetailsPageComponent implements OnInit {
   }
 
   private updateData() {
-    delete this.movie;
+    this.loading = true;
     const { id } = this.route.snapshot.params;
     this.movieDetailsService.getMovie(id).subscribe(movie => {
       this.movie = movie;
+      this.loading = false;
     });
 
     this.movieDetailsService.getRecommendations(id).subscribe(recommendations => {
       this.recommendations = recommendations;
     });
+  }
+
+  public ngOnDestroy() {
+    this.langSub.unsubscribe();
   }
 }

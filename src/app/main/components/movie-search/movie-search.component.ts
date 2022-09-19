@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie.model';
 import { MoviesService } from 'src/app/core/services/movies.service';
 
@@ -8,19 +9,23 @@ import { MoviesService } from 'src/app/core/services/movies.service';
   templateUrl: './movie-search.component.html',
   styleUrls: ['./movie-search.component.scss'],
 })
-export class MovieSearchComponent implements OnInit {
+export class MovieSearchComponent implements OnInit, OnDestroy {
   public movies: Movie[] = [];
   public totalPages: number = 0;
   public noResults: boolean = false;
-  private selectedPage = 1;
+  public selectedPage: number = 1;
+  private querySub!: Subscription;
+  private langSub!: Subscription;
 
   constructor(public moviesService: MoviesService, public translateService: TranslateService) {}
 
   public ngOnInit() {
-    this.moviesService.query$.subscribe(query => {
-      if (query) this.updatePage(1);
+    this.querySub = this.moviesService.query$.subscribe(query => {
+      if (query) {
+        this.updatePage(1);
+      }
     });
-    this.translateService.onLangChange.subscribe(() => {
+    this.langSub = this.translateService.onLangChange.subscribe(() => {
       this.updatePage(this.selectedPage);
     });
   }
@@ -32,7 +37,11 @@ export class MovieSearchComponent implements OnInit {
     this.moviesService.getMoviesByQuery(this.moviesService.query$.value!, page).subscribe(data => {
       this.movies = data.movies;
       this.totalPages = data.totalPages;
-      this.noResults = this.totalPages ? false : true;
+      this.noResults = !!this.totalPages;
     });
+  }
+
+  public ngOnDestroy() {
+    [this.querySub, this.langSub].forEach(sub => sub.unsubscribe());
   }
 }

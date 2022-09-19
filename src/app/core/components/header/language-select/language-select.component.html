@@ -2,9 +2,7 @@
   <mat-form-field class="lang-select" appearance="outline" color="accent">
     <mat-label class="label"></mat-label>
     <mat-select [formControl]="currentLang">
-      <mat-option *ngFor="let lang of translateService.getLangs()" [value]="lang">{{
-        lang
-      }}</mat-option>
+      <mat-option *ngFor="let lang of langs" [value]="lang">{{ lang }}</mat-option>
     </mat-select>
   </mat-form-field>
 </form>

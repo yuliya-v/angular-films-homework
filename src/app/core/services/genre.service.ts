@@ -8,6 +8,8 @@ interface GenresResponse {
   genres: Genre[];
 }
 
+const GENRES_LINK = 'genre/movie/list';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +23,7 @@ export class GenreService {
     if (lang in this.genres) {
       return of(this.getGenresFromIds(this.genres[lang]!, ids));
     }
-    return this.http.get<GenresResponse>('genre/movie/list').pipe(
+    return this.http.get<GenresResponse>(GENRES_LINK).pipe(
       map(res => res.genres),
       tap(genres => {
         this.genres[lang] = genres;

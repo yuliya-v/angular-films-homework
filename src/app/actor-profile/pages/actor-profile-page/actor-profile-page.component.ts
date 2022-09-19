@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { ActorDetails } from 'src/app/core/models/actor-details.model';
 import { ActorPhoto } from 'src/app/core/models/actor-photo.model';
 import { Movie } from 'src/app/core/models/movie.model';
@@ -12,7 +13,7 @@ import { ActorsService } from '../../services/actors.service';
   templateUrl: './actor-profile-page.component.html',
   styleUrls: ['./actor-profile-page.component.scss'],
 })
-export class ActorProfilePageComponent implements OnInit {
+export class ActorProfilePageComponent implements OnInit, OnDestroy {
   public actor?: ActorDetails;
   public photos?: ActorPhoto[];
   public relatedMovies: Movie[][] = [];
@@ -20,6 +21,8 @@ export class ActorProfilePageComponent implements OnInit {
   public actorImageSize: ImageSize = ImageSize.Large;
   private currentChunk: number = 0;
   private chunksLimit: number = 0;
+  private langSub!: Subscription;
+  public loading: boolean = true;
 
   constructor(
     private actorsService: ActorsService,
@@ -29,7 +32,7 @@ export class ActorProfilePageComponent implements OnInit {
 
   public ngOnInit() {
     this.getData();
-    this.translateService.onLangChange.subscribe(() => {
+    this.langSub = this.translateService.onLangChange.subscribe(() => {
       this.updateData();
     });
   }
@@ -38,6 +41,7 @@ export class ActorProfilePageComponent implements OnInit {
     const { id } = this.route.snapshot.params;
     this.actorsService.getActor(id).subscribe(actor => {
       this.actor = actor;
+      this.loading = false;
     });
     this.actorsService.getCredits(id).subscribe(credits => {
       this.relatedMovies = this.splitArray(credits);
@@ -47,10 +51,11 @@ export class ActorProfilePageComponent implements OnInit {
   }
 
   private updateData() {
-    delete this.actor;
+    this.loading = true;
     const { id } = this.route.snapshot.params;
     this.actorsService.getActor(id).subscribe(actor => {
       this.actor = actor;
+      this.loading = false;
     });
     this.actorsService.getCredits(id).subscribe(credits => {
       this.relatedMovies = this.splitArray(credits);
@@ -73,5 +78,9 @@ export class ActorProfilePageComponent implements OnInit {
       resultArr.push(inputArr.slice(i, i + chunkSize));
     }
     return resultArr;
+  }
+
+  public ngOnDestroy() {
+    this.langSub.unsubscribe();
   }
 }

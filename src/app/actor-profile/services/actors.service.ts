@@ -29,6 +29,12 @@ interface ActorPhotosResponseItem {
   width: number;
 }
 
+enum Links {
+  Actor = 'person/actorId',
+  Photos = 'person/actorId/images',
+  Credits = 'person/actorId/movie_credits',
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -36,7 +42,7 @@ export class ActorsService {
   constructor(private http: HttpClient) {}
 
   public getActor(actorId: string): Observable<ActorDetails> {
-    return this.http.get<ActorResponse>(`person/${actorId}`).pipe(
+    return this.http.get<ActorResponse>(Links.Actor.replace('actorId', actorId)).pipe(
       retry(1),
       map(actorResponse => ({
         ...actorResponse,
@@ -47,7 +53,7 @@ export class ActorsService {
   }
 
   public getPhotos(actorId: string): Observable<ActorPhoto[]> {
-    return this.http.get<ActorPhotosResponse>(`person/${actorId}/images`).pipe(
+    return this.http.get<ActorPhotosResponse>(Links.Photos.replace('actorId', actorId)).pipe(
       retry(1),
       map(photosResponse =>
         photosResponse.profiles.map(photo => ({
@@ -59,7 +65,7 @@ export class ActorsService {
   }
 
   public getCredits(actorId: string): Observable<Movie[]> {
-    return this.http.get<ActorCreditsResponse>(`person/${actorId}/movie_credits`).pipe(
+    return this.http.get<ActorCreditsResponse>(Links.Credits.replace('actorId', actorId)).pipe(
       retry(1),
       map(creditsResponse =>
         creditsResponse.cast.map(movieResponse => ({
