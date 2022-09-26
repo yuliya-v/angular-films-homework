@@ -20,7 +20,7 @@ export class MoviesService {
   public query$ = new BehaviorSubject<null | string>(null);
   public sorting$ = new BehaviorSubject<MoviesSorting>('popular');
 
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   public getMoviesBySorting(sorting: MoviesSorting, page: number = 1): Observable<MoviesData> {
     const params = new HttpParams().set('page', `${page}`);

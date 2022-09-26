@@ -14,8 +14,8 @@ export class MovieSearchComponent implements OnInit, OnDestroy {
   public totalPages: number = 0;
   public noResults: boolean = false;
   public selectedPage: number = 1;
-  private querySub!: Subscription;
-  private langSub!: Subscription;
+  public querySub!: Subscription;
+  public langSub!: Subscription;
 
   constructor(public moviesService: MoviesService, public translateService: TranslateService) {}
 

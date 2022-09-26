@@ -1,14 +1,3 @@
-<!-- <div [hidden]="moviesLoadStatus">
-  <div class="sorting">
-    <app-sorting
-      [class.hidden]="searchMode"
-      (sortingInputEvent)="sorting.next($event)"></app-sorting>
-  </div>
-  <app-movie-grid [data]="movies"></app-movie-grid>
-  <app-paginator
-    [totalPages]="totalPages"
-    (pageSelectEvent)="selectedPage.next($event)"></app-paginator>
-</div> -->
 <app-movie-search *ngIf="moviesService.query$.value; else default"></app-movie-search>
 <ng-template #default>
   <app-movie-list></app-movie-list>

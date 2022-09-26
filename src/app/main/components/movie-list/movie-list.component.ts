@@ -13,13 +13,13 @@ export class MovieListComponent implements OnInit, OnDestroy {
   public movies: Movie[] = [];
   public totalPages: number = 0;
   public selectedPage = 1;
-  private sortingSub!: Subscription;
-  private langSub!: Subscription;
+  public sortingSub!: Subscription;
+  public langSub!: Subscription;
 
   constructor(public moviesService: MoviesService, public translateService: TranslateService) {}
 
   public ngOnInit() {
-    this.sortingSub = this.moviesService.sorting$.subscribe(s => {
+    this.sortingSub = this.moviesService.sorting$.subscribe(() => {
       this.updatePage(1);
     });
     this.langSub = this.translateService.onLangChange.subscribe(() => {

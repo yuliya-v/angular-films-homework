@@ -11,7 +11,7 @@ export interface MoviesResponseItem {
 }
 
 export interface MoviesResponse {
-  page: 1;
+  page: number;
   results: MoviesResponseItem[];
   total_results: number;
   total_pages: number;

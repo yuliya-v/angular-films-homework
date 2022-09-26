@@ -16,7 +16,7 @@ enum ImageSizePath {
   providedIn: 'root',
 })
 export class ImageService {
-  public getImage(path: string, size: ImageSize): string {
+  public getImage(path: string, size: ImageSize = ImageSize.Small): string {
     return BASE_LINK + ImageSizePath[size] + path;
   }
 }

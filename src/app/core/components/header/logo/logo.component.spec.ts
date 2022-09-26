@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LogoComponent } from './logo.component';
 
@@ -9,6 +10,7 @@ describe('LogoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LogoComponent],
+      imports: [TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LogoComponent);

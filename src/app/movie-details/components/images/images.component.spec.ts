@@ -1,6 +1,7 @@
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 import { Image } from 'src/app/core/models/image.model';
 import { IMAGES_DATA } from 'src/app/data/images.mock';
 import { ImagesComponent } from './images.component';
@@ -22,6 +23,7 @@ describe('ImagesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ImagesComponent, TestHostComponent],
+      imports: [TranslateModule.forRoot()],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

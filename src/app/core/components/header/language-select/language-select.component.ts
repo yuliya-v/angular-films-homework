@@ -14,7 +14,7 @@ export class LanguageSelectComponent implements OnInit, OnDestroy {
     lang: this.currentLang,
   });
   public langs: string[] = [];
-  private langSub!: Subscription;
+  public langSub!: Subscription;
 
   constructor(public translateService: TranslateService) {}
 

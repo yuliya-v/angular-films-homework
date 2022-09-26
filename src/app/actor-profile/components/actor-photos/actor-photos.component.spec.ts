@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ActorPhotosComponent } from './actor-photos.component';
 
@@ -9,6 +10,7 @@ describe('ActorPhotosComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ActorPhotosComponent],
+      imports: [TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ActorPhotosComponent);

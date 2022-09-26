@@ -16,7 +16,7 @@ const GENRES_LINK = 'genre/movie/list';
 export class GenreService {
   private genres: Partial<Record<string, Genre[]>> = {};
 
-  constructor(private http: HttpClient, public translateService: TranslateService) {}
+  constructor(public http: HttpClient, public translateService: TranslateService) {}
 
   public getGenresList(ids: number[]): Observable<string[]> {
     const lang = this.translateService.currentLang;
@@ -32,7 +32,7 @@ export class GenreService {
     );
   }
 
-  private getGenresFromIds(genres: Genre[], ids: number[]): string[] {
+  public getGenresFromIds(genres: Genre[], ids: number[]): string[] {
     return ids
       .map(id => {
         return genres.find(genre => genre.id === id)?.name || '';
