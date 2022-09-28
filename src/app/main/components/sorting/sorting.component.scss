@@ -5,6 +5,11 @@
   font-size: 12px;
   border-color:  var(--color-light);
   background-color: transparent;
+
+  &.mat-button-toggle-checked {
+    color: var(--color-bcg);
+    background-color: var( --color-light);
+  }
 }
 
 ::ng-deep .movie-sorting .mat-button-toggle-label-content {

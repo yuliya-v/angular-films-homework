@@ -1,1 +1,3 @@
-<div [class.large]="size === 'large'">{{ rating | number: '1.1-1' }}</div>
+<div [class.large]="size === 'large'" [class.low-rating]="rating < 7">
+  {{ rating | number: '1.1-1' }}
+</div>

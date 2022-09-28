@@ -1,5 +1,4 @@
-<div class="sorting">
-  <app-sorting></app-sorting>
-</div>
-<app-movie-grid [data]="moviesService.movies"></app-movie-grid>
-<app-paginator></app-paginator>
+<app-movie-search *ngIf="moviesService.query$.value; else default"></app-movie-search>
+<ng-template #default>
+  <app-movie-list></app-movie-list>
+</ng-template>

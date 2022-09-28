@@ -10,7 +10,11 @@ div {
   text-align: center;
   font-size: 11px;
   line-height: 18px;
-  background-color:  var(--color-accent);
+  background-color: var(--color-accent);
+
+  &.low-rating {
+    background-color: var(--color-text);
+  }
 
   &.large {
     width: 50px;

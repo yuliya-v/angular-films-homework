@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSelectComponent } from './language-select.component';
 
 describe('LanguageSelectComponent', () => {
@@ -9,6 +10,7 @@ describe('LanguageSelectComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LanguageSelectComponent],
+      imports: [TranslateModule.forRoot()],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

@@ -1,11 +1,12 @@
 :host {
-  height: 350px;
+  min-height: 350px;
   width: 185px;
 }
 
 .container {
-  margin: 0 0 15px;
   position: relative;
+  display: block;
+  margin: 0 0 15px;
 
   &:hover {
     cursor: pointer;

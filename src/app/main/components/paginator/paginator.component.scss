@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  width: fit-content;
+}
+
+li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  color: var(--color-text);
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-image-bcg);
+  }
+  
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  &.selected {
+    color: var(--color-light);
+    background-color: var(--color-accent);
+  }
+}

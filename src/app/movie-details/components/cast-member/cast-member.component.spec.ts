@@ -24,7 +24,7 @@ describe('CastMemberComponent', () => {
   });
 
   it('should not have data', () => {
-    [component.name, component.character, component.imagePath].forEach(prop => {
+    [component.name, component.character, component.imagePath, component.id].forEach(prop => {
       expect(prop).toBeFalsy();
     });
   });
@@ -32,7 +32,7 @@ describe('CastMemberComponent', () => {
   it('should set data', () => {
     component.data = actorData;
     component.ngOnInit();
-    [component.name, component.character].forEach(prop => {
+    [component.name, component.character, component.id].forEach(prop => {
       expect(prop).toBeTruthy();
     });
   });

@@ -1,3 +1,5 @@
-<app-image [imagePath]="imagePath" [alt]="'actor photo'" [icon]="'person'"></app-image>
-<h4>{{ name }}</h4>
-<p>{{ character }}</p>
+<a [routerLink]="'/actor/' + id">
+  <app-image [imagePath]="imagePath" [alt]="'actor photo'" [icon]="'person'"></app-image>
+  <h4>{{ name }}</h4>
+  <p>{{ character }}</p>
+</a>

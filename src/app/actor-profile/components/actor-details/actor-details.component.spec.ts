@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 import { ACTOR_DATA } from 'src/app/data/actor.mock';
 
 import { ActorDetailsComponent } from './actor-details.component';
@@ -11,6 +12,7 @@ describe('ActorDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ActorDetailsComponent],
+      imports: [TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ActorDetailsComponent);

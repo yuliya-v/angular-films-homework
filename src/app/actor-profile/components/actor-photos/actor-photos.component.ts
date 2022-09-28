@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActorPhoto } from 'src/app/core/models/actor-photo';
+import { Component, Input } from '@angular/core';
+import { ActorPhoto } from 'src/app/core/models/actor-photo.model';
 import { ImageService, ImageSize } from 'src/app/core/services/image.service';
 
 @Component({
