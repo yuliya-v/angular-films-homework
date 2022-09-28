@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie.model';
 import { MoviesService } from 'src/app/core/services/movies.service';
 
@@ -13,16 +13,15 @@ export class MovieListComponent implements OnInit, OnDestroy {
   public movies: Movie[] = [];
   public totalPages: number = 0;
   public selectedPage = 1;
-  public sortingSub!: Subscription;
-  public langSub!: Subscription;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(public moviesService: MoviesService, public translateService: TranslateService) {}
 
   public ngOnInit() {
-    this.sortingSub = this.moviesService.sorting$.subscribe(() => {
+    this.moviesService.sorting$.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updatePage(1);
     });
-    this.langSub = this.translateService.onLangChange.subscribe(() => {
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updatePage(this.selectedPage);
     });
   }
@@ -39,6 +38,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    [this.sortingSub, this.langSub].forEach(sub => sub.unsubscribe());
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie.model';
 import { MoviesService } from 'src/app/core/services/movies.service';
 
@@ -14,18 +14,17 @@ export class MovieSearchComponent implements OnInit, OnDestroy {
   public totalPages: number = 0;
   public noResults: boolean = false;
   public selectedPage: number = 1;
-  public querySub!: Subscription;
-  public langSub!: Subscription;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(public moviesService: MoviesService, public translateService: TranslateService) {}
 
   public ngOnInit() {
-    this.querySub = this.moviesService.query$.subscribe(query => {
+    this.moviesService.query$.pipe(takeUntil(this.destroy$)).subscribe(query => {
       if (query) {
         this.updatePage(1);
       }
     });
-    this.langSub = this.translateService.onLangChange.subscribe(() => {
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updatePage(this.selectedPage);
     });
   }
@@ -42,6 +41,7 @@ export class MovieSearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    [this.querySub, this.langSub].forEach(sub => sub.unsubscribe());
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

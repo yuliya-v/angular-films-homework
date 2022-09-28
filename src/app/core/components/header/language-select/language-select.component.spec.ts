@@ -22,15 +22,4 @@ describe('LanguageSelectComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should create subscription', () => {
-    component.ngOnInit();
-    expect(component.langSub).toBeTruthy();
-  });
-
-  it('should delete subscription', () => {
-    component.ngOnInit();
-    component.ngOnDestroy();
-    expect(component.langSub.closed).toBeTrue();
-  });
 });

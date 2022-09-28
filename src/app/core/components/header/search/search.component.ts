@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { MoviesService } from 'src/app/core/services/movies.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public form = new FormGroup({
     searchValue: this.searchValue,
   });
-  public searchSub!: Subscription;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     public moviesService: MoviesService,
@@ -24,8 +24,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    this.searchSub = this.searchValue.valueChanges
-      .pipe(debounceTime(1500), distinctUntilChanged())
+    this.searchValue.valueChanges
+      .pipe(debounceTime(1500), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(searchString => {
         if (searchString) {
           this.router.navigate(['/']);
@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.searchSub.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

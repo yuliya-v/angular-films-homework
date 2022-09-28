@@ -19,14 +19,14 @@ export class GenreService {
   constructor(public http: HttpClient, public translateService: TranslateService) {}
 
   public getGenresList(ids: number[]): Observable<string[]> {
-    const lang = this.translateService.currentLang;
-    if (lang in this.genres) {
-      return of(this.getGenresFromIds(this.genres[lang]!, ids));
-    }
+    const currentLang = this.translateService.currentLang;
+    const currentGenres = this.genres[currentLang];
+    if (currentGenres) return of(this.getGenresFromIds(currentGenres, ids));
+
     return this.http.get<GenresResponse>(GENRES_LINK).pipe(
       map(res => res.genres),
       tap(genres => {
-        this.genres[lang] = genres;
+        this.genres[currentLang] = genres;
       }),
       map(genres => this.getGenresFromIds(genres, ids))
     );

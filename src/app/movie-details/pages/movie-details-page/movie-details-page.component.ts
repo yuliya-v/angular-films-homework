@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Actor } from 'src/app/core/models/actor.model';
 import { Image } from 'src/app/core/models/image.model';
 import { MovieDetails } from 'src/app/core/models/movie-details.model';
@@ -25,7 +25,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   public loading: boolean = true;
   private readonly IMAGES_NUM = 12;
   private readonly ACTORS_NUM = 30;
-  private langSub!: Subscription;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private movieDetailsService: MovieDetailsService,
@@ -35,7 +35,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.getData();
-    this.langSub = this.translateService.onLangChange.subscribe(() => {
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updateData();
     });
   }
@@ -76,6 +76,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.langSub.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

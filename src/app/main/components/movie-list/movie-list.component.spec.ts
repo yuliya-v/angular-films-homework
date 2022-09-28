@@ -35,16 +35,6 @@ describe('MovieListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create subscriptions', () => {
-    expect(component.sortingSub).toBeTruthy();
-  });
-
-  it('should delete subscriptions', () => {
-    expect(component.langSub).toBeTruthy();
-    component.ngOnDestroy();
-    expect(component.langSub.closed).toBeTrue();
-  });
-
   it('should update page', fakeAsync(() => {
     expect(component.selectedPage).toBe(1);
     component.updatePage(2);

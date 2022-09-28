@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-language-select',
@@ -14,13 +14,13 @@ export class LanguageSelectComponent implements OnInit, OnDestroy {
     lang: this.currentLang,
   });
   public langs: string[] = [];
-  public langSub!: Subscription;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(public translateService: TranslateService) {}
 
   public ngOnInit() {
     this.langs = this.translateService.getLangs();
-    this.langSub = this.currentLang.valueChanges.subscribe(lang => {
+    this.currentLang.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(lang => {
       if (lang) {
         this.translateService.use(lang);
       }
@@ -28,6 +28,7 @@ export class LanguageSelectComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.langSub.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

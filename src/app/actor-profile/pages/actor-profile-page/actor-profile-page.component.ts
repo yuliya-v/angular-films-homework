@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ActorDetails } from 'src/app/core/models/actor-details.model';
 import { ActorPhoto } from 'src/app/core/models/actor-photo.model';
 import { Movie } from 'src/app/core/models/movie.model';
@@ -21,7 +21,7 @@ export class ActorProfilePageComponent implements OnInit, OnDestroy {
   public actorImageSize: ImageSize = ImageSize.Large;
   private currentChunk: number = 0;
   private chunksLimit: number = 0;
-  private langSub!: Subscription;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
   public loading: boolean = true;
 
   constructor(
@@ -32,7 +32,7 @@ export class ActorProfilePageComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.getData();
-    this.langSub = this.translateService.onLangChange.subscribe(() => {
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updateData();
     });
   }
@@ -81,6 +81,7 @@ export class ActorProfilePageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.langSub.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

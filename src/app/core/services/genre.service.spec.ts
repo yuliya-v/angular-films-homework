@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { of, switchMap, tap } from 'rxjs';
 import { GENRES_DATA } from 'src/app/data/genres.mock';
 import { GenreService } from './genre.service';
 
@@ -37,14 +37,21 @@ describe('GenreService', () => {
     translateSpy.currentLang = 'en';
     httpClientSpy.get.and.returnValue(of({ genres: GENRES_DATA }));
 
-    service.getGenresList([35, 80]).subscribe(res => {
-      expect(res).toEqual(['Comedy', 'Crime']);
-      expect(service.http.get).toHaveBeenCalled();
-    });
-
-    service.getGenresList([35, 80]).subscribe(res => {
-      expect(res).toEqual(['Comedy', 'Crime']);
-      expect(service.http.get).toHaveBeenCalledTimes(1);
-    });
+    service
+      .getGenresList([35, 80])
+      .pipe(
+        tap(res => {
+          expect(res).toEqual(['Comedy', 'Crime']);
+          expect(service.http.get).toHaveBeenCalled();
+        }),
+        switchMap(() => service.getGenresList([35, 80]))
+      )
+      .pipe(
+        tap(res => {
+          expect(res).toEqual(['Comedy', 'Crime']);
+          expect(service.http.get).toHaveBeenCalledTimes(1);
+        })
+      )
+      .subscribe();
   });
 });

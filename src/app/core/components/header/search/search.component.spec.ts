@@ -33,11 +33,6 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create subscription', () => {
-    component.ngOnInit();
-    expect(component.searchSub).toBeTruthy();
-  });
-
   it('should pass value to service', fakeAsync(async () => {
     component.ngOnInit();
     const input = fixture.debugElement.query(By.css('input')).nativeElement;
@@ -47,11 +42,4 @@ describe('SearchComponent', () => {
     tick(1500);
     expect(component.moviesService.query$.value).toBe(val);
   }));
-
-  it('should delete subscription', () => {
-    component.ngOnInit();
-    expect(component.searchSub).toBeTruthy();
-    component.ngOnDestroy();
-    expect(component.searchSub.closed).toBeTrue();
-  });
 });
