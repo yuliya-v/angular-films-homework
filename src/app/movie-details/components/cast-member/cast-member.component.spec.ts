@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { ACTORS_DATA } from 'src/app/data/actors.mock';
 import { CastMemberComponent } from './cast-member.component';
 
@@ -11,6 +12,7 @@ describe('CastMemberComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CastMemberComponent],
+      imports: [TranslateModule.forRoot()],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

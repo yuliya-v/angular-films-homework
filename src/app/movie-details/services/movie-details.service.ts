@@ -13,7 +13,7 @@ import { MovieDetails } from 'src/app/core/models/movie-details.model';
 import { Movie } from 'src/app/core/models/movie.model';
 
 enum Links {
-  Recommendations = 'movie/id/recommendations',
+  Recommendations = 'movie/movieId/recommendations',
   Credits = 'movie/movieId/credits',
   Images = 'movie/movieId/images',
   Movie = 'movie/movieId',

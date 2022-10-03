@@ -4,18 +4,11 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SortingComponent } from './components/sorting/sorting.component';
 import { SharedModule } from '../shared/shared.module';
 import { PaginatorComponent } from './components/paginator/paginator.component';
-import { MovieListComponent } from './components/movie-list/movie-list.component';
-import { MovieSearchComponent } from './components/movie-search/movie-search.component';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
 
 @NgModule({
-  declarations: [
-    MainPageComponent,
-    SortingComponent,
-    PaginatorComponent,
-    MovieListComponent,
-    MovieSearchComponent,
-  ],
+  declarations: [MainPageComponent, SearchPageComponent, SortingComponent, PaginatorComponent],
   imports: [CommonModule, SharedModule],
-  exports: [MainPageComponent],
+  exports: [MainPageComponent, SearchPageComponent],
 })
 export class MainModule {}

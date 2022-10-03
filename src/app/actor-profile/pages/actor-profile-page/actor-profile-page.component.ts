@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ActorDetails } from 'src/app/core/models/actor-details.model';
@@ -27,13 +27,16 @@ export class ActorProfilePageComponent implements OnInit, OnDestroy {
   constructor(
     private actorsService: ActorsService,
     public translateService: TranslateService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
   public ngOnInit() {
+    const { lang, id } = this.route.snapshot.params;
     this.getData();
-    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.updateData();
+    this.translateService.use(lang);
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(e => {
+      this.router.navigate([`/${e.lang}`, 'actor', id]);
     });
   }
 
@@ -46,22 +49,6 @@ export class ActorProfilePageComponent implements OnInit, OnDestroy {
     this.actorsService.getCredits(id).subscribe(credits => {
       this.relatedMovies = this.splitArray(credits);
       this.chunksLimit = this.relatedMovies.length;
-      this.visibleRelatedMovies.push(...this.relatedMovies[this.currentChunk]);
-    });
-  }
-
-  private updateData() {
-    this.loading = true;
-    const { id } = this.route.snapshot.params;
-    this.actorsService.getActor(id).subscribe(actor => {
-      this.actor = actor;
-      this.loading = false;
-    });
-    this.actorsService.getCredits(id).subscribe(credits => {
-      this.relatedMovies = this.splitArray(credits);
-      this.chunksLimit = this.relatedMovies.length;
-      this.currentChunk = 0;
-      this.visibleRelatedMovies = [];
       this.visibleRelatedMovies.push(...this.relatedMovies[this.currentChunk]);
     });
   }

@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-import { MoviesService } from 'src/app/core/services/movies.service';
 
 @Component({
   selector: 'app-search',
@@ -17,20 +16,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   });
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(
-    public moviesService: MoviesService,
-    public translateService: TranslateService,
-    private router: Router
-  ) {}
+  constructor(public translateService: TranslateService, private router: Router) {}
 
   public ngOnInit() {
     this.searchValue.valueChanges
       .pipe(debounceTime(1500), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(searchString => {
-        if (searchString) {
-          this.router.navigate(['/']);
+        if (!searchString) {
+          this.router.navigate([`${this.translateService.currentLang}`, 'main'], {
+            queryParams: { page: 1, sort: 'popular' },
+          });
+          return;
         }
-        this.moviesService.query$.next(searchString);
+        this.router.navigate([`${this.translateService.currentLang}`, 'search'], {
+          queryParams: { page: 1, query: searchString },
+        });
       });
   }
 

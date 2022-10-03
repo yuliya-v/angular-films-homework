@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { GenreService } from 'src/app/core/services/genre.service';
 import { MOVIES_DATA } from 'src/app/data/movies.mock';
@@ -20,6 +21,7 @@ describe('MovieComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MovieComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [{ provide: GenreService, useClass: GenreServiceStub }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

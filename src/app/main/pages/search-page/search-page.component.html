@@ -3,8 +3,7 @@
   <app-paginator
     *ngIf="totalPages > 1"
     [totalPages]="totalPages"
-    [selectedPage]="selectedPage"
-    (pageSelectEvent)="updatePage($event)"></app-paginator>
+    [selectedPage]="selectedPage"></app-paginator>
 </div>
 <ng-template #spinner>
   <div class="spinner-wrapper">

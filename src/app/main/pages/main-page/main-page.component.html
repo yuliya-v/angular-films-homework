@@ -1,4 +1,15 @@
-<app-movie-search *ngIf="moviesService.query$.value; else default"></app-movie-search>
-<ng-template #default>
-  <app-movie-list></app-movie-list>
+<div *ngIf="movies.length; else spinner">
+  <div class="sorting">
+    <app-sorting (sortingInputEvent)="onSortingSelect($event)" [sort]="sort"></app-sorting>
+  </div>
+  <app-movie-grid [data]="movies"></app-movie-grid>
+  <app-paginator
+    *ngIf="totalPages > 1"
+    [totalPages]="totalPages"
+    [selectedPage]="page"></app-paginator>
+</div>
+<ng-template #spinner>
+  <div class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>

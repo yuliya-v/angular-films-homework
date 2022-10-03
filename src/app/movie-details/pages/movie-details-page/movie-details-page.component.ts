@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Actor } from 'src/app/core/models/actor.model';
@@ -30,13 +30,16 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   constructor(
     private movieDetailsService: MovieDetailsService,
     public translateService: TranslateService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
   public ngOnInit() {
+    const { lang, id } = this.route.snapshot.params;
     this.getData();
-    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.updateData();
+    this.translateService.use(lang);
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(e => {
+      this.router.navigate([`/${e.lang}`, 'movie', id]);
     });
   }
 
@@ -59,19 +62,6 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
     this.movieDetailsService.getMovieCast(id).subscribe(actors => {
       this.actors = actors.slice(0, this.ACTORS_NUM);
-    });
-  }
-
-  private updateData() {
-    this.loading = true;
-    const { id } = this.route.snapshot.params;
-    this.movieDetailsService.getMovie(id).subscribe(movie => {
-      this.movie = movie;
-      this.loading = false;
-    });
-
-    this.movieDetailsService.getRecommendations(id).subscribe(recommendations => {
-      this.recommendations = recommendations;
     });
   }
 
