@@ -8,11 +8,12 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public homePageLink = `/${this.translate.currentLang}/main/top/1`;
+  public homePageLink?: string;
   private destroy$: Subject<boolean> = new Subject();
   constructor(private translate: TranslateService) {}
 
   public ngOnInit() {
+    this.homePageLink = `/${this.translate.currentLang}/main/top/1`;
     this.translate.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(e => {
       this.homePageLink = `/${e.lang}/main`;
     });
