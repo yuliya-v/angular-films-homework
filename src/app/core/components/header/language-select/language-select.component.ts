@@ -9,8 +9,8 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./language-select.component.scss'],
 })
 export class LanguageSelectComponent implements OnInit, OnDestroy {
-  public currentLang = new FormControl<string>(this.translateService.currentLang);
-  public form = new FormGroup({
+  public currentLang: FormControl<string | null> = new FormControl();
+  public form: FormGroup = new FormGroup({
     lang: this.currentLang,
   });
   public langs: string[] = [];
@@ -20,6 +20,9 @@ export class LanguageSelectComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.langs = this.translateService.getLangs();
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe(e => {
+      this.currentLang.setValue(e.lang);
+    });
     this.currentLang.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(lang => {
       if (lang) {
         this.translateService.use(lang);

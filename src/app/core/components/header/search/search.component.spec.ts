@@ -7,6 +7,7 @@ import { SearchComponent } from './search.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 const moviesServiceStub = {
   query$: new BehaviorSubject<string | null>(null),
@@ -15,6 +16,7 @@ const moviesServiceStub = {
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +27,7 @@ describe('SearchComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -33,13 +36,16 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should pass value to service', fakeAsync(async () => {
-    component.ngOnInit();
+  it('should navigate', fakeAsync(async () => {
+    const navigateSpy = spyOn(router, 'navigate');
     const input = fixture.debugElement.query(By.css('input')).nativeElement;
-    const val = 'input value';
-    input.value = val;
+    input.value = 'value';
     input.dispatchEvent(new Event('input'));
     tick(1500);
-    expect(component.moviesService.query$.value).toBe(val);
+    expect(navigateSpy).toHaveBeenCalledTimes(1);
+    input.value = '';
+    input.dispatchEvent(new Event('input'));
+    tick(1500);
+    expect(navigateSpy).toHaveBeenCalledTimes(2);
   }));
 });

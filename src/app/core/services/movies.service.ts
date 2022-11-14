@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, retry } from 'rxjs';
+import { map, Observable, retry } from 'rxjs';
 import { MoviesResponse } from '../models/http-responses';
 
 enum MoviesSortPath {
@@ -17,9 +17,6 @@ type MoviesData = { movies: Movie[]; totalPages: number };
   providedIn: 'root',
 })
 export class MoviesService {
-  public query$ = new BehaviorSubject<null | string>(null);
-  public sorting$ = new BehaviorSubject<MoviesSorting>('popular');
-
   constructor(public http: HttpClient) {}
 
   public getMoviesBySorting(sorting: MoviesSorting, page: number = 1): Observable<MoviesData> {

@@ -7,9 +7,16 @@ import { LanguageSelectComponent } from './components/header/language-select/lan
 import { LogoComponent } from './components/header/logo/logo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SearchComponent, LanguageSelectComponent, LogoComponent],
+  declarations: [
+    HeaderComponent,
+    SearchComponent,
+    LanguageSelectComponent,
+    LogoComponent,
+    NotFoundComponent,
+  ],
   imports: [CommonModule, SharedModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
   exports: [HeaderComponent, SearchComponent],
 })

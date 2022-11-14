@@ -8,13 +8,13 @@ import { MoviesSorting } from 'src/app/core/services/movies.service';
   styleUrls: ['./sorting.component.scss'],
 })
 export class SortingComponent implements OnInit {
-  public sorting = new FormControl<MoviesSorting>('popular');
-  @Input() initSorting?: MoviesSorting;
+  public sortInput = new FormControl<MoviesSorting>('popular');
+  @Input() sort?: MoviesSorting;
   @Output() public sortingInputEvent = new EventEmitter<MoviesSorting>();
 
   public ngOnInit() {
-    if (this.initSorting) {
-      this.sorting.setValue(this.initSorting);
+    if (this.sort) {
+      this.sortInput.setValue(this.sort);
     }
   }
 }

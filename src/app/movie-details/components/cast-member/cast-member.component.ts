@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Actor } from 'src/app/core/models/actor.model';
 
 @Component({
@@ -12,6 +13,9 @@ export class CastMemberComponent implements OnInit {
   public name: string = '';
   public character: string = '';
   public imagePath: string = '';
+  public link: string[] = [];
+
+  constructor(private translateService: TranslateService) {}
 
   public ngOnInit(): void {
     if (this.data) {
@@ -19,6 +23,7 @@ export class CastMemberComponent implements OnInit {
       this.id = this.data.id.toString();
       this.name = this.data.name;
       this.character = this.data.character;
+      this.link = [`/${this.translateService.currentLang}`, 'actor', this.id];
     }
   }
 }
