@@ -1,0 +1,12 @@
+.form {
+    margin: 40px auto;
+    max-width: 350px;
+}
+
+.form-field {
+    display: block;
+
+    &:last-of-type {
+        margin-bottom: 20px;
+    }
+}
